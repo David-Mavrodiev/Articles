@@ -1,0 +1,25 @@
+{
+  "name": "articles-client",
+  "version": "1.0.0",
+  "description": "Course project",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/David-Mavrodiev/Articles-Client.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/David-Mavrodiev/Articles-Client/issues"
+  },
+  "homepage": "https://github.com/David-Mavrodiev/Articles-Client#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gulp-sass": "^3.1.0",
+    "gulp": "^3.9.1"
+  }
+}
