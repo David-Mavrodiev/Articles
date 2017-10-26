@@ -2,6 +2,7 @@
 "use strict";
 
 (function (scope) {
+    scope.path = 'http://localhost:3333';
     scope.requester = {
         sendRequest: function sendRequest(method, url, body) {
             var headers = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};

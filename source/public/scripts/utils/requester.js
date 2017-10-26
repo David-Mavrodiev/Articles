@@ -2,6 +2,7 @@
 "use strict";
 
 ((scope) => {
+    scope.path = 'http://localhost:3333';
     scope.requester = {
         sendRequest(method, url, body, headers = {}) {
             return new Promise((resolve, reject) => {
