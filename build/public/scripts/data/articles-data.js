@@ -13,7 +13,7 @@ var requester = window.requester;
         getArticleById: function getArticleById(id) {
             return requester.getJSON(window.path + ("/api/articles/getbyid?id=" + id));
         },
-        addBook: function addBook(article) {
+        addArticle: function addArticle(article) {
             return requester.postJSON(window.path + "/api/articles/create", article);
         },
         addComment: function addComment(comment) {

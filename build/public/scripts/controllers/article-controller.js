@@ -8,16 +8,16 @@ var templates = window.templates;
 var articlesData = window.articlesdata;
 
 (function (scope) {
-
-    var allArticles = function allArticles() {
-        Promise.all([articlesData.getArticles(0, 10, ""), templates.get("articles")]).then(function (_ref) {
+    var articleById = function articleById(params) {
+        var id = params.id;
+        Promise.all([articlesData.getArticleById(id), templates.get("article")]).then(function (_ref) {
             var _ref2 = _slicedToArray(_ref, 2),
                 res = _ref2[0],
                 template = _ref2[1];
         });
     };
 
-    scope.articles = {
-        allArticles: allArticles
+    scope.article = {
+        articleById: articleById
     };
 })(window.controllers);
