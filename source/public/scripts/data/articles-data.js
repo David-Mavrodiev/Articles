@@ -11,7 +11,7 @@ const requester = window.requester;
         getArticleById(id) {
             return requester.getJSON(window.path + `/api/articles/getbyid?id=${id}`);
         },
-        addBook(article) {
+        addArticle(article) {
             return requester.postJSON(window.path + `/api/articles/create`, article);
         },
         addComment(comment) {

@@ -6,16 +6,16 @@ const templates = window.templates;
 const articlesData = window.articlesdata;
 
 ((scope) => {
-
-    const allArticles = () => {
-        Promise.all([articlesData.getArticles(0, 10, ""), templates.get("articles")])
+    const articleById = (params) => {
+        var id = params.id;
+        Promise.all([articlesData.getArticleById(id), templates.get("article")])
             .then(([res, template]) => {
 
             });
     }
 
-    scope.articles = {
-        allArticles
+    scope.article = {
+        articleById
     };
 
 })(window.controllers)
