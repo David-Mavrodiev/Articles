@@ -4,18 +4,18 @@ const requester = window.requester;
 
 ((scope) => {
 
-    scope.articlesDate = {
+    scope.articlesdata = {
         getArticles(pageNumber, pageSize, pattern) {
-            return requester.getJSON(window.path + `/api/articles/getall?pageNumber=${pageNumber}&pageSize=${pageSize}&pattern=${pattern}`);
+            return requester.getJSON(`/api/articles?pageNumber=${pageNumber}&pageSize=${pageSize}&pattern=${pattern}`);
         },
         getArticleById(id) {
-            return requester.getJSON(window.path + `/api/articles/getbyid?id=${id}`);
+            return requester.getJSON(`/api/articles/getbyid?id=${id}`);
         },
         addArticle(article) {
-            return requester.postJSON(window.path + `/api/articles/create`, article);
+            return requester.postJSON(`/api/articles/create`, article);
         },
         addComment(comment) {
-            return requester.putJSON(window.path + `/api/articles/addcomment`, comment);
+            return requester.putJSON(`/api/articles/addcomment`, comment);
         },
     }
 

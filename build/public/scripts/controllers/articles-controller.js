@@ -14,6 +14,17 @@ var articlesData = window.articlesdata;
             var _ref2 = _slicedToArray(_ref, 2),
                 res = _ref2[0],
                 template = _ref2[1];
+
+            var articles = res;
+            var intlData = {
+                "locales": "en-US"
+            };
+
+            var html = template({ books: books }, {
+                data: { intl: intlData }
+            });
+
+            $("#articles-placeholder").html(html);
         });
     };
 

@@ -6,10 +6,10 @@ const requester = window.requester;
 
     scope.usersdata = {
         login(user) {
-            return requester.putJSON(window.path + "/api/account/login", user);
+            return requester.putJSON("/api/account/login", user);
         },
         register(user) {
-            return requester.postJSON(window.path + "/api/account/register", user);
+            return requester.postJSON("/api/account/register", user);
         },
         logout() {
             return Promise.resolve()

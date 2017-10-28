@@ -11,7 +11,16 @@ const usersdata = window.usersdata;
     const start = () => {
         Promise.all([articlesData.getArticles(0, 10, ""), templates.get("home")])
             .then(([res, template]) => {
+                const articles = res;
+                var intlData = {
+                    "locales": "en-US"
+                };
+                
+                let html = template({ articles }, {
+                    data: { intl: intlData }
+                });
 
+                $("#articles-placeholder").html(html);
             });
     };
 

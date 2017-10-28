@@ -8,10 +8,10 @@ var requester = window.requester;
 
     scope.usersdata = {
         login: function login(user) {
-            return requester.putJSON(window.path + "/api/account/login", user);
+            return requester.putJSON("/api/account/login", user);
         },
         register: function register(user) {
-            return requester.postJSON(window.path + "/api/account/register", user);
+            return requester.postJSON("/api/account/register", user);
         },
         logout: function logout() {
             return Promise.resolve().then(function () {
