@@ -6,6 +6,7 @@ window.controllers = window.controllers || {}
 const templates = window.templates;
 const articlesData = window.articlesdata;
 const usersdata = window.usersdata;
+const common = window.common;
 
 ((scope) => {
     const start = () => {
@@ -20,9 +21,31 @@ const usersdata = window.usersdata;
                     data: { intl: intlData }
                 });
 
-                $("#articles-placeholder").html(html);
+                $(".articles-container").html(html);
+
+                usersdata.isLoggedIn().then(username => {
+                    if(username === null){
+                        let loginLink = common.createNavLink("Login");
+                        let registerLink = common.createNavLink("Register");
+                        $(".navbar-nav").append(loginLink, registerLink);
+
+                        templates.get("login").then(template => {
+                            var intlData = {
+                                "locales": "en-US"
+                            };
+                            
+                            let html = template({ articles }, {
+                                data: { intl: intlData }
+                            });
+
+                            $(".login-register-container").html(html);         
+                        });
+                    }
+                });
             });
     };
+
+
 
     scope.home = {
         start

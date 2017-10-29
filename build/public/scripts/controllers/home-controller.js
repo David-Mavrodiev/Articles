@@ -8,6 +8,7 @@ window.controllers = window.controllers || {};
 var templates = window.templates;
 var articlesData = window.articlesdata;
 var usersdata = window.usersdata;
+var common = window.common;
 
 (function (scope) {
     var start = function start() {
@@ -25,7 +26,27 @@ var usersdata = window.usersdata;
                 data: { intl: intlData }
             });
 
-            $("#articles-placeholder").html(html);
+            $(".articles-container").html(html);
+
+            usersdata.isLoggedIn().then(function (username) {
+                if (username === null) {
+                    var loginLink = common.createNavLink("Login");
+                    var registerLink = common.createNavLink("Register");
+                    $(".navbar-nav").append(loginLink, registerLink);
+
+                    templates.get("login").then(function (template) {
+                        var intlData = {
+                            "locales": "en-US"
+                        };
+
+                        var html = template({ articles: articles }, {
+                            data: { intl: intlData }
+                        });
+
+                        $(".login-register-container").html(html);
+                    });
+                }
+            });
         });
     };
 

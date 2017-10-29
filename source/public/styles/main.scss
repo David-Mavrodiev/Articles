@@ -5,9 +5,18 @@
 
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans');
 
+@mixin generic-custom-button($text-color, $bg-color){
+    border-radius: 0px !important;
+    background-color: $bg-color !important;
+    color: $text-color !important;
+}
+
 $navbar-active-link-color: #dcc08e;
 $global-backround-color: #323232; 
 $navbar-default-link-color: white;
+$article-width: 230px;
+$article-height: 350px;
+$main-theme-color: #9a1d0d;
 
 body {
     background-color: $global-backround-color;
@@ -36,10 +45,21 @@ a {
   }
 }
 
+/*------------------------------------NAVIGATION---------------------------------------
+---------------------------------------------------------------------------------------*/
+
 .logo-holder{
   position: relative;
   left:18px;
   top:5px;
+  img {
+    width: 30%;
+    height: 30%;
+  }
+}
+
+header{
+  height: 150px;
 }
 
 .navbar {
@@ -76,30 +96,224 @@ a {
    }
 }
 
-@media (max-width: 980px) {
-    .navbar{
-        position: absolute;
-        top:20px;
-        right:0;
+.nav button{
+  @include generic-custom-button($main-theme-color, $navbar-active-link-color);
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+/*------------------------------------ARTICLES-----------------------------------------
+---------------------------------------------------------------------------------------*/
+.articles-container{
+  margin-left:25px;
+  margin-top:40px;
+}
+
+.articles-single-article{
+  background-color:white;
+  box-shadow: 2px 2px black;
+  width:$article-width;
+  height:$article-height;
+  margin:13px;
+}
+
+.single-article-image-containter{
+  z-index: 0;
+  width:220px;
+  height:150px;
+  margin:5px 0px 5px 5px;
+  box-shadow: 0px 0px 1px 1px grey;
+  position:relative;
+}
+
+.single-article-category, .da-category{
+  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
+  color:white;
+  text-shadow: 1px 1px black;
+  letter-spacing: 2px;
+  background-color:$main-theme-color;
+  display:inline-block;
+  padding: 1px 2px 1px 3px;
+  position:absolute;
+  right:0px;
+  top:0px;
+}
+
+.single-article-image{
+  width:100%;
+  height:100%;
+}
+
+.single-article-title{
+  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
+  color:$main-theme-color;
+  overflow: hidden;
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+  font-size:32px;
+  letter-spacing: 1px;
+  margin-top:5px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.single-article-author{
+  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
+  color:#212121;
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+  font-size:18px;
+  letter-spacing: 0.5px;
+  margin-top:-10px;
+  margin-bottom:8px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.single-article-date, .da-date, {
+  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
+  color:white;
+  text-shadow: 1px 1px 1px grey, -1px -1px 1px grey;
+  position: absolute;
+  font-size: 42px;
+  letter-spacing: 1px;
+  top:20px;
+  right:2px;
+  span{
+    display: block;
+
+    &:nth-child(2){
+      text-align: right;
+      margin-top: -26px;
     }
+  }
+}
+
+.single-article-content{
+  font-family: 'Droid Sans', sans-serif;
+  font-size:13px;
+  color: #7a7575;
+  text-overflow:clip;
+  border-top: 1px dotted #a6a6a6; 
+  height: calc( 100% - 251px );
+  overflow:hidden;
+  padding: 10px 10px 0px 15px;
+}
+
+/*------------------------------------ACCOUNT-----------------------------------------
+---------------------------------------------------------------------------------------*/
+
+.login-register-container{
+  position: absolute;
+  width: 500px;
+  label{
+    color: $navbar-active-link-color; 
+  }
+
+  .modal-header{
+    border-color: $main-theme-color;
+  }
+
+  .modal-content{
+    background-color:#222;
+    color:#ddd;
+  }
+
+  .modal-title{
+    color: $navbar-active-link-color;
+  }
+
+  .modal-footer{
+    border-color: $main-theme-color;
+  }
+
+  input[type="submit"]{
+    @include generic-custom-button($main-theme-color, $navbar-active-link-color);
+  }
+
+  .modal-footer button{
+    @include generic-custom-button($navbar-active-link-color, $main-theme-color);
+  }
+
+  .modal-dialog {
+    width: 400px;
+    overflow: auto;
+    background-color:#333;
+  }
+
+  .modal.fade.in {
+    left: 100px;
+  }
+}
+
+
+@media (max-width: 991px) {
+  .navbar{
+      position: absolute;
+      top:20px;
+      right:0;
+  }
+
+  .navbar{
+    position: absolute;
+    top:20px;
+    right:0;
+  }
+
+  .navbar-collapse{
+    z-index: 1;
+    margin-top:65px;
+    background-color:#323232;
+  }
+  .articles-container{
+    margin: 0px;
+  }
+
+  .navbar-collapse .navbar-nav{
+    border: 2px solid $navbar-active-link-color;
+    background-color: #222222;
+    width: 200px;
+    text-align: center;
+    padding-bottom: 20px;
+  }
 }
 
 @media (max-width: 800px) {
-
+    .logo-holder{
+      img{
+        width: 40%;
+      }
+    }
 }
 
 @media (max-width: 660px) {
+  .logo-holder{
+      img{
+        width: 60%;
+      }
+    }
+}
 
+@media (max-width: 425px) {
+  .login-register-container .modal-dialog{
+    width: 350px;
+  }
 }
 
 @media (max-width: 375px) {
-
+   .login-register-container .modal-dialog{
+      width: 300px;
+    }
 }
 
 @media (max-width: 360px) {
-
+  .login-register-container .modal-dialog{
+      width: 280px;
+    }
 }
 
 @media (max-width: 320px) {
-  
+    .login-register-container .modal-dialog{
+      width: 240px;
+    }
 }
