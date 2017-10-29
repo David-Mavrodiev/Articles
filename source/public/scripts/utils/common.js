@@ -3,12 +3,12 @@
 
 ((scope) => {
     scope.common = {
-        createNavLink(text) {
+        createNavLink(text, targetId) {
             let button = $("<button>");
             button.addClass("btn");
             button.addClass("btn-default");
             button.attr("data-toggle", "modal");
-            button.attr("data-target", "#login-modal");
+            button.attr("data-target", targetId);
             button.text(text);
             let li = $("<li>");
             li.addClass("nav-item");

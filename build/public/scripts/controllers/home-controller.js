@@ -30,25 +30,78 @@ var common = window.common;
 
             usersdata.isLoggedIn().then(function (username) {
                 if (username === null) {
-                    var loginLink = common.createNavLink("Login");
-                    var registerLink = common.createNavLink("Register");
-                    $(".navbar-nav").append(loginLink, registerLink);
+                    var loginLink = common.createNavLink("Login", "#login-modal");
+                    var registerLink = common.createNavLink("Register", "#register-modal");
+                    $(".ml-auto").append(loginLink, registerLink);
+                    $(".login-register-container").html("");
 
                     templates.get("login").then(function (template) {
                         var intlData = {
                             "locales": "en-US"
                         };
 
-                        var html = template({ articles: articles }, {
+                        var html = template(null, {
                             data: { intl: intlData }
                         });
 
-                        $(".login-register-container").html(html);
+                        $(".login-register-container").append(html);
+                        addLoginListener();
+                    });
+
+                    templates.get("register").then(function (template) {
+                        var intlData = {
+                            "locales": "en-US"
+                        };
+
+                        var html = template(null, {
+                            data: { intl: intlData }
+                        });
+
+                        $(".login-register-container").append(html);
+                        addRegisterListener();
                     });
                 }
             });
         });
     };
+
+    function addLoginListener() {
+        $("#btn-login").on("click", function (ev) {
+            var user = {
+                username: $("#login-username").val(),
+                password: $("#login-password").val()
+            };
+
+            usersdata.login(user).then(function (resp) {
+                if (resp.success) {
+                    localStorage.setItem("username", resp.username);
+                } else {
+                    document.location = "#/home";
+                }
+            });
+            ev.preventDefault();
+            return false;
+        });
+    }
+
+    function addRegisterListener() {
+        $("#btn-register").on("click", function (ev) {
+            var user = {
+                username: $("#register-username").val(),
+                password: $("#register-password").val()
+            };
+
+            usersdata.register(user).then(function (resp) {
+                if (resp.success) {
+                    localStorage.setItem("username", resp.username);
+                } else {
+                    document.location = "#/home";
+                }
+            });
+            ev.preventDefault();
+            return false;
+        });
+    }
 
     scope.home = {
         start: start

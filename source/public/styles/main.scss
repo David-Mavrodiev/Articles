@@ -96,10 +96,13 @@ header{
    }
 }
 
-.nav button{
-  @include generic-custom-button($main-theme-color, $navbar-active-link-color);
-  margin-top: 10px;
-  margin-left: 10px;
+.nav{
+  width: 100%;
+  button{
+    @include generic-custom-button($main-theme-color, $navbar-active-link-color);
+    margin-top: 10px;
+    margin-left: 10px;
+  }
 }
 
 /*------------------------------------ARTICLES-----------------------------------------
@@ -309,7 +312,7 @@ header{
 @media (max-width: 360px) {
   .login-register-container .modal-dialog{
       width: 280px;
-    }
+  }
 }
 
 @media (max-width: 320px) {

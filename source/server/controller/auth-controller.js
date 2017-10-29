@@ -41,6 +41,7 @@ module.exports = function(data) {
             res.status(200).json({ success: true });
         },
         register(req, res) {
+            console.log(req.body);
             const user = {
                 username: req.body.username,
                 password: req.body.password,
