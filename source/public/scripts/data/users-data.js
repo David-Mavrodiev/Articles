@@ -5,6 +5,9 @@ const requester = window.requester;
 ((scope) => {
 
     scope.usersdata = {
+        getUserByUsername(username){
+            return requester.getJSON("/api/users/" + username);
+        },
         login(user) {
             return requester.putJSON("/api/users/login", user);
         },

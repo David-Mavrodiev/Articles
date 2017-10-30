@@ -9,6 +9,7 @@ var templates = window.templates;
 var articlesData = window.articlesdata;
 var usersdata = window.usersdata;
 var common = window.common;
+var templateHelper = window.helper;
 
 (function (scope) {
     var $accountContainer = $(".account-container");
@@ -40,123 +41,24 @@ var common = window.common;
                     var registerLink = common.createNavLinkToggle("Register", "#register-modal");
                     $accountContainer.append(loginLink, registerLink);
 
-                    templates.get("login").then(function (template) {
-                        var intlData = {
-                            "locales": "en-US"
-                        };
-
-                        var html = template(null, {
-                            data: { intl: intlData }
-                        });
-
-                        $loginRegisterContainer.append(html);
-                        addLoginListener();
-                    });
-
-                    templates.get("register").then(function (template) {
-                        var intlData = {
-                            "locales": "en-US"
-                        };
-
-                        var html = template(null, {
-                            data: { intl: intlData }
-                        });
-
-                        $loginRegisterContainer.append(html);
-                        addRegisterListener();
-                    });
+                    templateHelper.addLogin($loginRegisterContainer, $accountContainer);
+                    templateHelper.addRegister($loginRegisterContainer, $accountContainer);
                 } else {
-                    addLogoutLink();
+                    usersdata.getUserByUsername(username).then(function (resp) {
+                        console.log(resp);
+                        if ($.inArray("admin", resp.roles)) {
+                            templateHelper.addArticleCreate($accountContainer);
+                        }
+                    });
+
+                    templateHelper.addLogoutLink($accountContainer);
                 }
             });
 
-            templates.get("pagination").then(function (template) {
-                var intlData = {
-                    "locales": "en-US"
-                };
-
-                var html = template(null, {
-                    data: { intl: intlData }
-                });
-
-                $paginationContainer.append(html);
-            });
-
-            templates.get("footer").then(function (template) {
-                var intlData = {
-                    "locales": "en-US"
-                };
-
-                var html = template(null, {
-                    data: { intl: intlData }
-                });
-
-                $footerContainer.append(html);
-            });
+            templateHelper.addPagination($paginationContainer);
+            templateHelper.addFooter($footerContainer);
         });
     };
-
-    function addLoginListener() {
-        $("#btn-login").on("click", function (ev) {
-            var user = {
-                username: $("#login-username").val(),
-                password: $("#login-password").val()
-            };
-
-            usersdata.login(user).then(function (resp) {
-                if (resp.success) {
-                    localStorage.setItem("username", resp.username);
-                    $("#login-modal").modal("hide");
-                    addLogoutLink();
-                } else {
-                    document.location = "#/home";
-                }
-            });
-            ev.preventDefault();
-            return false;
-        });
-    }
-
-    function addRegisterListener() {
-        $("#btn-register").on("click", function (ev) {
-            var user = {
-                username: $("#register-username").val(),
-                password: $("#register-password").val(),
-                firstname: $("#register-firstname").val(),
-                lastname: $("#register-lastname").val(),
-                email: $("#register-email").val(),
-                imageUrl: $("#register-image-url").val()
-            };
-
-            console.log(user);
-
-            usersdata.register(user).then(function (resp) {
-                if (resp.success) {
-                    localStorage.setItem("username", resp.user.username);
-                    $("#register-modal").modal("hide");
-                    addLogoutLink();
-                } else {
-                    document.location = "#/home";
-                }
-            });
-            ev.preventDefault();
-            return false;
-        });
-    }
-
-    function addLogoutLink() {
-        var logoutLink = common.createNavLink("Logout", "logout");
-
-        logoutLink.on("click", function () {
-            var loginLink = common.createNavLinkToggle("Login", "#login-modal");
-            var registerLink = common.createNavLinkToggle("Register", "#register-modal");
-            $accountContainer.append(loginLink, registerLink);
-            localStorage.removeItem("username");
-            $(this).remove();
-        });
-
-        $accountContainer.html(logoutLink);
-    }
 
     scope.home = {
         start: start

@@ -303,9 +303,7 @@ footer{
 /*------------------------------------ACCOUNT-----------------------------------------
 ---------------------------------------------------------------------------------------*/
 
-.login-register-container{
-  position: absolute;
-  width: 500px;
+@mixin custom-modal{
   label{
     color: $navbar-active-link-color; 
   }
@@ -346,9 +344,20 @@ footer{
   }
 }
 
+.login-register-container{
+  position: absolute;
+  width: 500px;
+
+  @include custom-modal;
+}
+
 .account-btn{
   border-radius: 10px !important;
   border: 2px solid $main-theme-color;
+}
+
+.account-container{
+  @include custom-modal;
 }
 
 @media (max-width: 991px) {
