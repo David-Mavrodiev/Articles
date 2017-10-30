@@ -105,6 +105,8 @@ header{
   }
 }
 
+
+
 /*------------------------------------ARTICLES-----------------------------------------
 ---------------------------------------------------------------------------------------*/
 .articles-container{
@@ -203,6 +205,101 @@ header{
   padding: 10px 10px 0px 15px;
 }
 
+.article-search-box{
+  font-family: 'Droid Sans', sans-serif;
+  background:transparent url('../images/glass.png') no-repeat scroll right center;
+  background-color: #1d1e1e;
+  border-bottom: 1px solid #202020 !important;
+  border-right: 1px solid #303030 !important;
+  text-shadow: 1px 1px black  !important;
+  border-radius: 3px;
+  width:166px;
+  margin: 10px;
+  height: 28px;
+  color:#909090;
+  font-size: 11px;
+  font-weight: bold;
+  font-style: italic;
+  border:none;
+  outline-color: $navbar-active-link-color;
+}
+
+/*------------------------------------ACCOUNT-----------------------------------------
+---------------------------------------------------------------------------------------*/
+
+.pagination-element{
+  font-size: 30px;
+}
+
+.pagination-container{
+  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
+  margin-left:35px;
+  margin-right:25px;
+  text-shadow: 1px 1px black;
+  color: $navbar-default-link-color;
+
+  a{
+    color: $navbar-default-link-color;
+    &:hover{
+      color: $navbar-active-link-color;
+    }
+  }
+}
+
+.pagination{
+  width: 100%;
+}
+
+/*------------------------------------FOOTER-----------------------------------------
+---------------------------------------------------------------------------------------*/
+
+footer{
+  width: 100%;
+  height: auto;
+  border-top:1px solid #4a4a4a;
+  box-shadow: 0px 5px 15px black;
+}
+
+.footer-container{
+  padding-bottom: 40px;
+}
+
+.footer{
+  width:280px;
+  margin-top:40px;
+  margin-right:20px;
+}
+
+.footer-header{
+  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
+  text-shadow: 1px 1px black;
+  color: $navbar-active-link-color;
+}
+
+.footer-content-container{
+   font-family: 'Droid Sans', sans-serif;
+   font-size: 13px;
+   color: #c4c4c4;
+   text-shadow: 1px 1px black  !important;
+   div{
+     cursor:pointer;
+     &:hover{
+       .footer-arrows{
+          color:#9a1d0d;
+       }
+       .footer-content{
+         color: white;
+       }
+     }
+   }
+}
+
+.footer-arrows{
+  padding-right:5px;
+  font-size: 18px;
+  color:#585858;
+}
+
 /*------------------------------------ACCOUNT-----------------------------------------
 ---------------------------------------------------------------------------------------*/
 
@@ -249,6 +346,10 @@ header{
   }
 }
 
+.account-btn{
+  border-radius: 10px !important;
+  border: 2px solid $main-theme-color;
+}
 
 @media (max-width: 991px) {
   .navbar{
@@ -274,6 +375,14 @@ header{
 
   .navbar-collapse .navbar-nav{
     border: 2px solid $navbar-active-link-color;
+    background-color: #222222;
+    width: 200px;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .article-search-box-container{
+    border: 2px solid #dcc08e;
     background-color: #222222;
     width: 200px;
     text-align: center;

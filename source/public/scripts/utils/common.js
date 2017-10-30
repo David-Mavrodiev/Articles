@@ -3,10 +3,11 @@
 
 ((scope) => {
     scope.common = {
-        createNavLink(text, targetId) {
+        createNavLinkToggle(text, targetId) {
             let button = $("<button>");
             button.addClass("btn");
             button.addClass("btn-default");
+            button.addClass("account-btn");
             button.attr("data-toggle", "modal");
             button.attr("data-target", targetId);
             button.text(text);
@@ -17,5 +18,17 @@
 
             return li;
         },
+        createNavLink(text, id){
+            let a = $("<a>");
+            a.addClass("nav-link");
+            a.attr("id", id);
+            a.text("Logout");
+            let li = $("<li>");
+            li.addClass("nav-item");
+            let link = $("<a>");
+            li.append(a);
+
+            return li;
+        }
     }
 })(window);
