@@ -34,7 +34,8 @@ module.exports = function(data) {
             const owner = req.user,
                 title = req.body.title,
                 description = req.body.description,
-                category = req.body.category;
+                category = req.body.category,
+                image = req.body.image;
 
             if (!title) {
                 res.status(400).json({
@@ -43,7 +44,7 @@ module.exports = function(data) {
                 });
                 return;
             }
-            data.createArticle({ title, description, category }, owner)
+            data.createArticle({ title, description, category, image }, owner)
                 .then(dbArticle => res.status(201).json({
                     success: true,
                     message: "The article is added",

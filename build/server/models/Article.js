@@ -20,6 +20,12 @@ const articleSchema = new mongoose.Schema({
         userImageUrl: String,
         userRoles: [String]
     },
+    image: {
+        type: String
+    },
+    creationDate: {
+        type: Date
+    },
     comments: [{
         content: {
             type: String,

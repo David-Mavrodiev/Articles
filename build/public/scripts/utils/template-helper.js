@@ -22,7 +22,7 @@ var common = window.common;
                 data: { intl: intlData }
             });
 
-            $accountContainer.append(html);
+            $articleCreateContainer.append(html);
             addCreateArticleListener();
         });
     }
@@ -36,6 +36,7 @@ var common = window.common;
             var registerLink = common.createNavLinkToggle("Register", "#register-modal");
             $accountContainer.append(loginLink, registerLink);
             usersdata.logout();
+            location.reload();
         });
 
         $accountContainer.html(logoutLink);
@@ -98,7 +99,8 @@ var common = window.common;
             var article = {
                 title: $("#article-title").val(),
                 description: $("#article-description").val(),
-                category: $("#article-category").val()
+                category: $("#article-category").val(),
+                image: $("#article-image-link").val()
             };
 
             articlesdata.addArticle(article).then(function (resp) {

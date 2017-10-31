@@ -20,7 +20,9 @@ const templateHelper = window.helper;
                     "locales": "en-US"
                 };
 
-                let html = template({ articles }, {
+                
+
+                let html = template({ articles, monthNames }, {
                     data: { intl: intlData }
                 });
 

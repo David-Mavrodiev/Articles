@@ -25,7 +25,7 @@ var templateHelper = window.helper;
                 "locales": "en-US"
             };
 
-            var html = template({ articles: articles }, {
+            var html = template({ articles: articles, monthNames: monthNames }, {
                 data: { intl: intlData }
             });
 

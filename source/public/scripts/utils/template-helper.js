@@ -19,7 +19,7 @@ const common = window.common;
                 data: { intl: intlData }
             });
 
-            $accountContainer.append(html);
+            $articleCreateContainer.append(html);
             addCreateArticleListener();
         });
     }
@@ -33,6 +33,7 @@ const common = window.common;
             let registerLink = common.createNavLinkToggle("Register", "#register-modal");
             $accountContainer.append(loginLink, registerLink);
             usersdata.logout();
+            location.reload();
         });
 
         $accountContainer.html(logoutLink);
@@ -97,7 +98,8 @@ const common = window.common;
             let article = {
                 title: $("#article-title").val(),
                 description: $("#article-description").val(),
-                category: $("#article-category").val()
+                category: $("#article-category").val(),
+                image: $("#article-image-link").val()
             };
 
             articlesdata.addArticle(article)

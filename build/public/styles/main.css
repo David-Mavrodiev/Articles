@@ -272,38 +272,38 @@ footer {
   border-radius: 10px !important;
   border: 2px solid #9a1d0d; }
 
-.account-container label {
+.article-create-container label {
   color: #dcc08e; }
 
-.account-container .modal-header {
+.article-create-container .modal-header {
   border-color: #9a1d0d; }
 
-.account-container .modal-content {
+.article-create-container .modal-content {
   background-color: #222;
   color: #ddd; }
 
-.account-container .modal-title {
+.article-create-container .modal-title {
   color: #dcc08e; }
 
-.account-container .modal-footer {
+.article-create-container .modal-footer {
   border-color: #9a1d0d; }
 
-.account-container input[type="submit"] {
+.article-create-container input[type="submit"] {
   border-radius: 0px !important;
   background-color: #dcc08e !important;
   color: #9a1d0d !important; }
 
-.account-container .modal-footer button {
+.article-create-container .modal-footer button {
   border-radius: 0px !important;
   background-color: #9a1d0d !important;
   color: #dcc08e !important; }
 
-.account-container .modal-dialog {
+.article-create-container .modal-dialog {
   width: 400px;
   overflow: auto;
   background-color: #333; }
 
-.account-container .modal.fade.in {
+.article-create-container .modal.fade.in {
   left: 100px; }
 
 @media (min-width: 1582px) {

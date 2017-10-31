@@ -5,10 +5,10 @@
                 <div class="single-article-category">
                     {{category}}
                 </div>
-                <img class="single-article-image" src="https://newsletter-project.herokuapp.com/api/article/image/58ce9172d9a94c00072b5a93">
+                <img class="single-article-image" src="{{image}}">
                 <div class="single-article-date">
-                    <span>MAR</span>
-                    <span> 19</span>
+                    <span>{{getMonthName creationDate }}</span>
+                    <span> {{getDayNumber creationDate}}</span>
                 </div>
             </div>
 

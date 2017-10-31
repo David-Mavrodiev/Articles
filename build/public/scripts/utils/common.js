@@ -1,11 +1,23 @@
 /* globals $ Promise */
 "use strict";
 
+var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var $accountContainer = $(".account-container");
 var $loginRegisterContainer = $(".login-register-container");
 var $paginationContainer = $(".pagination-container");
 var $articlesContainer = $(".articles-container");
 var $footerContainer = $("footer");
+var $articleCreateContainer = $(".article-create-container");
+
+Handlebars.registerHelper("getMonthName", function (date) {
+    var d = new Date(date);
+    return monthNames[d.getMonth()];
+});
+
+Handlebars.registerHelper("getDayNumber", function (date) {
+    var d = new Date(date);
+    return d.getDate();
+});
 
 (function (scope) {
     scope.common = {

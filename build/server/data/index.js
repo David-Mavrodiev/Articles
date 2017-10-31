@@ -74,10 +74,17 @@ module.exports = {
         });
     },
     createArticle(article, owner) {
+        var currentTime = new Date()
+        var month = currentTime.getMonth();
+        var day = currentTime.getDate();
+        var year = currentTime.getFullYear();
+
         const newArticle = {
             title: article.title,
             description: article.description,
-            category: article.category
+            category: article.category,
+            image: article.image,
+            creationDate: month + "-" + day + "-" + year
         };
 
         if (owner) {
