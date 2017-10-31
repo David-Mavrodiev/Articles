@@ -47,7 +47,7 @@ header {
   color: #dcc08e !important; }
 
 .nav-link {
-  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
+  font-family: "LeagueGothic", "Helvetica Neue", "Helvetica", "Sans Serif";
   color: white !important;
   text-shadow: 1px 1px black;
   letter-spacing: 1px;
@@ -93,8 +93,9 @@ header {
   box-shadow: 0px 0px 1px 1px grey;
   position: relative; }
 
-.single-article-category, .da-category {
-  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
+.single-article-category,
+.da-category {
+  font-family: "LeagueGothic", "Helvetica Neue", "Helvetica", "Sans Serif";
   color: white;
   text-shadow: 1px 1px black;
   letter-spacing: 2px;
@@ -110,7 +111,7 @@ header {
   height: 100%; }
 
 .single-article-title {
-  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
+  font-family: "LeagueGothic", "Helvetica Neue", "Helvetica", "Sans Serif";
   color: #9a1d0d;
   overflow: hidden;
   white-space: nowrap;
@@ -122,7 +123,7 @@ header {
   padding-left: 15px; }
 
 .single-article-author {
-  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
+  font-family: "LeagueGothic", "Helvetica Neue", "Helvetica", "Sans Serif";
   color: #212121;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -133,8 +134,9 @@ header {
   padding-right: 15px;
   padding-left: 15px; }
 
-.single-article-date, .da-date {
-  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
+.single-article-date,
+.da-date {
+  font-family: "LeagueGothic", "Helvetica Neue", "Helvetica", "Sans Serif";
   color: white;
   text-shadow: 1px 1px 1px grey, -1px -1px 1px grey;
   position: absolute;
@@ -142,9 +144,11 @@ header {
   letter-spacing: 1px;
   top: 20px;
   right: 2px; }
-  .single-article-date span, .da-date span {
+  .single-article-date span,
+  .da-date span {
     display: block; }
-    .single-article-date span:nth-child(2), .da-date span:nth-child(2) {
+    .single-article-date span:nth-child(2),
+    .da-date span:nth-child(2) {
       text-align: right;
       margin-top: -26px; }
 
@@ -164,7 +168,7 @@ header {
   background-color: #1d1e1e;
   border-bottom: 1px solid #202020 !important;
   border-right: 1px solid #303030 !important;
-  text-shadow: 1px 1px black  !important;
+  text-shadow: 1px 1px black !important;
   border-radius: 3px;
   width: 166px;
   margin: 10px;
@@ -182,7 +186,7 @@ header {
   font-size: 30px; }
 
 .pagination-container {
-  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
+  font-family: "LeagueGothic", "Helvetica Neue", "Helvetica", "Sans Serif";
   margin-left: 35px;
   margin-right: 25px;
   text-shadow: 1px 1px black;
@@ -212,7 +216,7 @@ footer {
   margin-right: 20px; }
 
 .footer-header {
-  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
+  font-family: "LeagueGothic", "Helvetica Neue", "Helvetica", "Sans Serif";
   text-shadow: 1px 1px black;
   color: #dcc08e; }
 
@@ -220,7 +224,7 @@ footer {
   font-family: 'Droid Sans', sans-serif;
   font-size: 13px;
   color: #c4c4c4;
-  text-shadow: 1px 1px black  !important; }
+  text-shadow: 1px 1px black !important; }
   .footer-content-container div {
     cursor: pointer; }
     .footer-content-container div:hover .footer-arrows {
@@ -302,6 +306,10 @@ footer {
 .account-container .modal.fade.in {
   left: 100px; }
 
+@media (min-width: 1582px) {
+  .articles-container {
+    margin-top: 100px; } }
+
 @media (max-width: 991px) {
   .navbar {
     position: absolute;
@@ -337,6 +345,10 @@ footer {
 @media (max-width: 660px) {
   .logo-holder img {
     width: 60%; } }
+
+@media (max-width: 528px) {
+  .articles-container {
+    margin-left: 22%; } }
 
 @media (max-width: 425px) {
   .login-register-container .modal-dialog {
