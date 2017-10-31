@@ -105,7 +105,7 @@ var common = window.common;
 
             articlesdata.addArticle(article).then(function (resp) {
                 $("#create-article-modal").modal("hide");
-                Promise.all([articlesData.getArticles(0, 10, ""), templates.get("home")]).then(function (_ref) {
+                Promise.all([articlesData.getArticles(0, 5, ""), templates.get("articles")]).then(function (_ref) {
                     var _ref2 = _slicedToArray(_ref, 2),
                         res = _ref2[0],
                         template = _ref2[1];
@@ -127,16 +127,20 @@ var common = window.common;
 
     scope.helper = {
         addPagination: function addPagination() {
-            templates.get("pagination").then(function (template) {
-                var intlData = {
-                    "locales": "en-US"
-                };
+            articlesdata.getAllArticlesCount().then(function (count) {
+                templates.get("pagination").then(function (template) {
+                    var intlData = {
+                        "locales": "en-US"
+                    };
 
-                var html = template(null, {
-                    data: { intl: intlData }
+                    count = count / 5;
+
+                    var html = template({ count: count }, {
+                        data: { intl: intlData }
+                    });
+
+                    $paginationContainer.append(html);
                 });
-
-                $paginationContainer.append(html);
             });
         },
         addFooter: function addFooter() {

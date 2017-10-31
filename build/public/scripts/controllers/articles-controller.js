@@ -9,8 +9,12 @@ var articlesData = window.articlesdata;
 
 (function (scope) {
 
-    var allArticles = function allArticles() {
-        Promise.all([articlesData.getArticles(0, 10, ""), templates.get("articles")]).then(function (_ref) {
+    var allArticles = function allArticles(query) {
+        console.log(query);
+        var pageNumber = 1;
+        var pageSize = 5;
+
+        Promise.all([articlesData.getArticles(pageNumber, pageSize, ""), templates.get("articles")]).then(function (_ref) {
             var _ref2 = _slicedToArray(_ref, 2),
                 res = _ref2[0],
                 template = _ref2[1];
@@ -20,11 +24,11 @@ var articlesData = window.articlesdata;
                 "locales": "en-US"
             };
 
-            var html = template({ books: books }, {
+            var html = template({ articles: articles }, {
                 data: { intl: intlData }
             });
 
-            $("#articles-placeholder").html(html);
+            $articlesContainer.html(html);
         });
     };
 

@@ -14,7 +14,7 @@ var templateHelper = window.helper;
 (function (scope) {
 
     var start = function start() {
-        Promise.all([articlesData.getArticles(0, 10, ""), templates.get("home")]).then(function (_ref) {
+        Promise.all([articlesData.getArticles(0, 5, ""), templates.get("articles")]).then(function (_ref) {
             var _ref2 = _slicedToArray(_ref, 2),
                 res = _ref2[0],
                 template = _ref2[1];

@@ -11,6 +11,7 @@ const articlesController = createArticlesController(data);
 module.exports = app => {
     router
         .get('/api/articles', articlesController.getArticles)
+        .get('/api/articles-count', articlesController.getAllArticlesCount)
         .post('/api/articles', auth.isAuthenticated, articlesController.createArticle)
         .get('/api/articles/:articleId', dataMiddleware.articleById, articlesController.articleById)
         .put('/api/articles/:articleId', auth.isInRole('admin'), articlesController.updateArticle)

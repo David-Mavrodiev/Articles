@@ -117,6 +117,17 @@ module.exports = {
             });
         });
     },
+    getAllArticlesCount() {
+        return new Promise((resolve, reject) => {
+            Article.find({}).sort("title").exec((err, articles) => {
+                if (err) {
+                    return reject(err);
+                }
+
+                return resolve(articles.length);
+            });
+        });
+    },
     getPagedArticles(pageNumber, pageSize, pattern) {
        
         return new Promise((resolve, reject) => {

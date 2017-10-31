@@ -29,6 +29,11 @@ module.exports = function(data) {
                     res.status(500).json(error);
                 });
         },
+        getAllArticlesCount(req, res){
+            data.getAllArticlesCount()
+                .then(count => res.status(200).json(count))
+                .catch(error => res.status(500).json(error));
+        },
         createArticle(req, res) {
             console.log(req.body);
             const owner = req.user,

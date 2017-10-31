@@ -12,15 +12,13 @@ const templateHelper = window.helper;
 ((scope) => {
 
     const start = () => {
-        Promise.all([articlesData.getArticles(0, 10, ""), templates.get("home")])
+        Promise.all([articlesData.getArticles(0, 5, ""), templates.get("articles")])
             .then(([res, template]) => {
                 const articles = res;
                 console.log(articles);
                 var intlData = {
                     "locales": "en-US"
                 };
-
-                
 
                 let html = template({ articles, monthNames }, {
                     data: { intl: intlData }

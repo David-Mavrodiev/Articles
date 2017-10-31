@@ -105,7 +105,7 @@ const common = window.common;
             articlesdata.addArticle(article)
                 .then((resp) => {
                     $("#create-article-modal").modal("hide");
-                    Promise.all([articlesData.getArticles(0, 10, ""), templates.get("home")])
+                    Promise.all([articlesData.getArticles(0, 5, ""), templates.get("articles")])
                         .then(([res, template]) => {
                             const articles = res;
                             var intlData = {
@@ -124,17 +124,22 @@ const common = window.common;
 
     scope.helper = {
         addPagination() {
-            templates.get("pagination").then(template => {
-                var intlData = {
-                    "locales": "en-US"
-                };
+            articlesdata.getAllArticlesCount()
+                .then(count => {
+                    templates.get("pagination").then(template => {
+                        var intlData = {
+                            "locales": "en-US"
+                        };
 
-                let html = template(null, {
-                    data: { intl: intlData }
+                        count = count / 5;
+
+                        let html = template({ count }, {
+                            data: { intl: intlData }
+                        });
+
+                        $paginationContainer.append(html);
+                    });
                 });
-
-                $paginationContainer.append(html);
-            });
         },
         addFooter() {
             templates.get("footer").then(template => {

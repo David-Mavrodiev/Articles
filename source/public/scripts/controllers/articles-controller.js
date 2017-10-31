@@ -7,19 +7,23 @@ const articlesData = window.articlesdata;
 
 ((scope) => {
 
-    const allArticles = () => {
-        Promise.all([articlesData.getArticles(0, 10, ""), templates.get("articles")])
+    const allArticles = (query) => {
+        console.log(query);
+        var pageNumber = 1;
+        var pageSize = 5;
+
+        Promise.all([articlesData.getArticles(pageNumber, pageSize, ""), templates.get("articles")])
             .then(([res, template]) => {
                 const articles = res;
                 var intlData = {
                     "locales": "en-US"
                 };
                 
-                let html = template({ books }, {
+                let html = template({ articles }, {
                     data: { intl: intlData }
                 });
 
-                $("#articles-placeholder").html(html);
+                $articlesContainer.html(html);
             });
     }
 
