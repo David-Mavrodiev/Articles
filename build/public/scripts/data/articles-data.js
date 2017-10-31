@@ -14,7 +14,7 @@ var requester = window.requester;
             return requester.getJSON("/api/articles/getbyid?id=" + id);
         },
         addArticle: function addArticle(article) {
-            return requester.postJSON("/api/articles/create", article);
+            return requester.postJSON("/api/articles", article);
         },
         addComment: function addComment(comment) {
             return requester.putJSON("/api/articles/addcomment", comment);

@@ -12,7 +12,7 @@ const requester = window.requester;
             return requester.getJSON(`/api/articles/getbyid?id=${id}`);
         },
         addArticle(article) {
-            return requester.postJSON(`/api/articles/create`, article);
+            return requester.postJSON(`/api/articles`, article);
         },
         addComment(comment) {
             return requester.putJSON(`/api/articles/addcomment`, comment);

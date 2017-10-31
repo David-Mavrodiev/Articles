@@ -9,21 +9,23 @@ const usersdata = window.usersdata;
 const common = window.common;
 const templateHelper = window.helper;
 
+var $accountContainer = $(".account-container");
+var $loginRegisterContainer = $(".login-register-container");
+var $paginationContainer = $(".pagination-container");
+var $articlesContainer = $(".articles-container");
+var $footerContainer = $("footer");
+
 ((scope) => {
-    let $accountContainer =  $(".account-container");
-    let $loginRegisterContainer = $(".login-register-container");
-    let $paginationContainer = $(".pagination-container");
-    let $articlesContainer = $(".articles-container");
-    let $footerContainer = $("footer");
 
     const start = () => {
         Promise.all([articlesData.getArticles(0, 10, ""), templates.get("home")])
             .then(([res, template]) => {
                 const articles = res;
+                console.log(articles);
                 var intlData = {
                     "locales": "en-US"
                 };
-                
+
                 let html = template({ articles }, {
                     data: { intl: intlData }
                 });
@@ -31,18 +33,17 @@ const templateHelper = window.helper;
                 $articlesContainer.html(html);
 
                 usersdata.isLoggedIn().then(username => {
-                    if(username === null){
+                    if (username === null) {
                         let loginLink = common.createNavLinkToggle("Login", "#login-modal");
                         let registerLink = common.createNavLinkToggle("Register", "#register-modal");
                         $accountContainer.append(loginLink, registerLink);
-                        
+
                         templateHelper.addLogin($loginRegisterContainer, $accountContainer);
                         templateHelper.addRegister($loginRegisterContainer, $accountContainer);
-                    }
-                    else{
+                    } else {
                         usersdata.getUserByUsername(username).then((resp) => {
                             console.log(resp);
-                            if($.inArray("admin", resp.roles)){
+                            if ($.inArray("admin", resp.roles)) {
                                 templateHelper.addArticleCreate($accountContainer);
                             }
                         });

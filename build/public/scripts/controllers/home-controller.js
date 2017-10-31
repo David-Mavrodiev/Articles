@@ -11,12 +11,13 @@ var usersdata = window.usersdata;
 var common = window.common;
 var templateHelper = window.helper;
 
+var $accountContainer = $(".account-container");
+var $loginRegisterContainer = $(".login-register-container");
+var $paginationContainer = $(".pagination-container");
+var $articlesContainer = $(".articles-container");
+var $footerContainer = $("footer");
+
 (function (scope) {
-    var $accountContainer = $(".account-container");
-    var $loginRegisterContainer = $(".login-register-container");
-    var $paginationContainer = $(".pagination-container");
-    var $articlesContainer = $(".articles-container");
-    var $footerContainer = $("footer");
 
     var start = function start() {
         Promise.all([articlesData.getArticles(0, 10, ""), templates.get("home")]).then(function (_ref) {
@@ -25,6 +26,7 @@ var templateHelper = window.helper;
                 template = _ref2[1];
 
             var articles = res;
+            console.log(articles);
             var intlData = {
                 "locales": "en-US"
             };

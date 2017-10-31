@@ -20,7 +20,7 @@ module.exports = function(data) {
                 pageSize = 50;
             }
 
-            
+
 
             data.getPagedArticles(pageNumber, pageSize, pattern)
                 .then(articles => res.status(200).json(articles))
@@ -30,6 +30,7 @@ module.exports = function(data) {
                 });
         },
         createArticle(req, res) {
+            console.log(req.body);
             const owner = req.user,
                 title = req.body.title,
                 description = req.body.description,

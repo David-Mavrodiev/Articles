@@ -1,29 +1,33 @@
 /* globals $ Promise */
 "use strict";
 const usersdata = window.usersdata;
+const articlesdata = window.articlesdata;
 const common = window.common;
 
 ((scope) => {
-    function addArticleCreate($accountContainer){
+    function addArticleCreate($accountContainer) {
         let articleCreateLink = common.createNavLinkToggle("Create article", "#create-article-modal");
+
         $accountContainer.append(articleCreateLink);
 
         templates.get("create-article").then(template => {
             var intlData = {
                 "locales": "en-US"
             };
-            
+
             let html = template(null, {
                 data: { intl: intlData }
             });
 
-            $accountContainer.append(html);  
+            $accountContainer.append(html);
+            addCreateArticleListener();
         });
     }
-    function addLogoutLink($accountContainer){
+
+    function addLogoutLink($accountContainer) {
         let logoutLink = common.createNavLink("Logout", "logout");
 
-        logoutLink.on("click", function(){
+        logoutLink.on("click", function() {
             $accountContainer.html("");
             let loginLink = common.createNavLinkToggle("Login", "#login-modal");
             let registerLink = common.createNavLinkToggle("Register", "#register-modal");
@@ -47,19 +51,19 @@ const common = window.common;
                         localStorage.setItem("username", resp.username);
                         $("#login-modal").modal("hide");
                         addLogoutLink($accountContainer);
-                        if($.inArray("admin", resp.userrole)){
+                        if ($.inArray("admin", resp.userrole)) {
                             addArticleCreate($accountContainer);
                         }
                     } else {
                         document.location = "#/home";
                     }
-            });
+                });
             ev.preventDefault();
             return false;
         });
     }
 
-    function addRegisterListener($accountContainer){
+    function addRegisterListener($accountContainer) {
         $("#btn-register").on("click", (ev) => {
             let user = {
                 username: $("#register-username").val(),
@@ -76,51 +80,79 @@ const common = window.common;
                         localStorage.setItem("username", resp.user.username);
                         $("#register-modal").modal("hide");
                         addLogoutLink($accountContainer);
-                        if($.inArray("admin", resp.user.roles)){
+                        if ($.inArray("admin", resp.user.roles)) {
                             addArticleCreate($accountContainer);
                         }
                     } else {
                         document.location = "#/home";
                     }
-            });
+                });
             ev.preventDefault();
             return false;
         });
     }
 
+    function addCreateArticleListener() {
+        $("#btn-create-article").on("click", function() {
+            let article = {
+                title: $("#article-title").val(),
+                description: $("#article-description").val(),
+                category: $("#article-category").val()
+            };
+
+            articlesdata.addArticle(article)
+                .then((resp) => {
+                    $("#create-article-modal").modal("hide");
+                    Promise.all([articlesData.getArticles(0, 10, ""), templates.get("home")])
+                        .then(([res, template]) => {
+                            const articles = res;
+                            var intlData = {
+                                "locales": "en-US"
+                            };
+
+                            let html = template({ articles }, {
+                                data: { intl: intlData }
+                            });
+
+                            $articlesContainer.html(html);
+                        });
+                });
+        });
+    }
+
     scope.helper = {
-        addPagination($paginationContainer){
+        addPagination($paginationContainer) {
             templates.get("pagination").then(template => {
                 var intlData = {
                     "locales": "en-US"
                 };
-                
+
                 let html = template(null, {
                     data: { intl: intlData }
                 });
 
-                $paginationContainer.append(html);  
+                $paginationContainer.append(html);
             });
         },
-        addFooter($footerContainer){
+        addFooter($footerContainer) {
             templates.get("footer").then(template => {
                 var intlData = {
                     "locales": "en-US"
                 };
-                
+
                 let html = template(null, {
                     data: { intl: intlData }
                 });
 
-                $footerContainer.append(html);  
+                $footerContainer.append(html);
             });
         },
-        addLogin($loginRegisterContainer, $accountContainer){
+        addLogin($loginRegisterContainer, $accountContainer) {
             templates.get("login").then(template => {
                 var intlData = {
                     "locales": "en-US"
                 };
-                
+
                 let html = template(null, {
                     data: { intl: intlData }
                 });
@@ -129,18 +161,18 @@ const common = window.common;
                 addLoginListener($accountContainer);
             });
         },
-        addRegister($loginRegisterContainer, $accountContainer){
+        addRegister($loginRegisterContainer, $accountContainer) {
             templates.get("register").then(template => {
                 var intlData = {
                     "locales": "en-US"
                 };
-                
+
                 let html = template(null, {
                     data: { intl: intlData }
                 });
 
                 $loginRegisterContainer.append(html);
-                addRegisterListener($accountContainer);  
+                addRegisterListener($accountContainer);
             });
         },
         addLogoutLink: addLogoutLink,
