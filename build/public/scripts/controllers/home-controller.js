@@ -11,12 +11,6 @@ var usersdata = window.usersdata;
 var common = window.common;
 var templateHelper = window.helper;
 
-var $accountContainer = $(".account-container");
-var $loginRegisterContainer = $(".login-register-container");
-var $paginationContainer = $(".pagination-container");
-var $articlesContainer = $(".articles-container");
-var $footerContainer = $("footer");
-
 (function (scope) {
 
     var start = function start() {
@@ -43,22 +37,21 @@ var $footerContainer = $("footer");
                     var registerLink = common.createNavLinkToggle("Register", "#register-modal");
                     $accountContainer.append(loginLink, registerLink);
 
-                    templateHelper.addLogin($loginRegisterContainer, $accountContainer);
-                    templateHelper.addRegister($loginRegisterContainer, $accountContainer);
+                    templateHelper.addLogin();
+                    templateHelper.addRegister();
                 } else {
                     usersdata.getUserByUsername(username).then(function (resp) {
-                        console.log(resp);
                         if ($.inArray("admin", resp.roles)) {
-                            templateHelper.addArticleCreate($accountContainer);
+                            templateHelper.addArticleCreate();
                         }
                     });
 
-                    templateHelper.addLogoutLink($accountContainer);
+                    templateHelper.addLogoutLink();
                 }
             });
 
-            templateHelper.addPagination($paginationContainer);
-            templateHelper.addFooter($footerContainer);
+            templateHelper.addPagination();
+            templateHelper.addFooter();
         });
     };
 

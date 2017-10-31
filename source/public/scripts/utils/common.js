@@ -1,6 +1,12 @@
 /* globals $ Promise */
 "use strict";
 
+var $accountContainer = $(".account-container");
+var $loginRegisterContainer = $(".login-register-container");
+var $paginationContainer = $(".pagination-container");
+var $articlesContainer = $(".articles-container");
+var $footerContainer = $("footer");
+
 ((scope) => {
     scope.common = {
         createNavLinkToggle(text, targetId) {
@@ -18,7 +24,7 @@
 
             return li;
         },
-        createNavLink(text, id){
+        createNavLink(text, id) {
             let a = $("<a>");
             a.addClass("nav-link");
             a.attr("id", id);

@@ -8,7 +8,7 @@ var articlesdata = window.articlesdata;
 var common = window.common;
 
 (function (scope) {
-    function addArticleCreate($accountContainer) {
+    function addArticleCreate() {
         var articleCreateLink = common.createNavLinkToggle("Create article", "#create-article-modal");
 
         $accountContainer.append(articleCreateLink);
@@ -27,7 +27,7 @@ var common = window.common;
         });
     }
 
-    function addLogoutLink($accountContainer) {
+    function addLogoutLink() {
         var logoutLink = common.createNavLink("Logout", "logout");
 
         logoutLink.on("click", function () {
@@ -41,7 +41,7 @@ var common = window.common;
         $accountContainer.html(logoutLink);
     }
 
-    function addLoginListener($accountContainer) {
+    function addLoginListener() {
         $("#btn-login").on("click", function (ev) {
             var user = {
                 username: $("#login-username").val(),
@@ -52,9 +52,9 @@ var common = window.common;
                 if (resp.success) {
                     localStorage.setItem("username", resp.username);
                     $("#login-modal").modal("hide");
-                    addLogoutLink($accountContainer);
+                    addLogoutLink();
                     if ($.inArray("admin", resp.userrole)) {
-                        addArticleCreate($accountContainer);
+                        addArticleCreate();
                     }
                 } else {
                     document.location = "#/home";
@@ -65,7 +65,7 @@ var common = window.common;
         });
     }
 
-    function addRegisterListener($accountContainer) {
+    function addRegisterListener() {
         $("#btn-register").on("click", function (ev) {
             var user = {
                 username: $("#register-username").val(),
@@ -82,7 +82,7 @@ var common = window.common;
                     $("#register-modal").modal("hide");
                     addLogoutLink($accountContainer);
                     if ($.inArray("admin", resp.user.roles)) {
-                        addArticleCreate($accountContainer);
+                        addArticleCreate();
                     }
                 } else {
                     document.location = "#/home";
@@ -124,7 +124,7 @@ var common = window.common;
     }
 
     scope.helper = {
-        addPagination: function addPagination($paginationContainer) {
+        addPagination: function addPagination() {
             templates.get("pagination").then(function (template) {
                 var intlData = {
                     "locales": "en-US"
@@ -137,7 +137,7 @@ var common = window.common;
                 $paginationContainer.append(html);
             });
         },
-        addFooter: function addFooter($footerContainer) {
+        addFooter: function addFooter() {
             templates.get("footer").then(function (template) {
                 var intlData = {
                     "locales": "en-US"
@@ -150,7 +150,7 @@ var common = window.common;
                 $footerContainer.append(html);
             });
         },
-        addLogin: function addLogin($loginRegisterContainer, $accountContainer) {
+        addLogin: function addLogin() {
             templates.get("login").then(function (template) {
                 var intlData = {
                     "locales": "en-US"
@@ -161,10 +161,10 @@ var common = window.common;
                 });
 
                 $loginRegisterContainer.append(html);
-                addLoginListener($accountContainer);
+                addLoginListener();
             });
         },
-        addRegister: function addRegister($loginRegisterContainer, $accountContainer) {
+        addRegister: function addRegister() {
             templates.get("register").then(function (template) {
                 var intlData = {
                     "locales": "en-US"
@@ -175,7 +175,7 @@ var common = window.common;
                 });
 
                 $loginRegisterContainer.append(html);
-                addRegisterListener($accountContainer);
+                addRegisterListener();
             });
         },
 

@@ -1,6 +1,12 @@
 /* globals $ Promise */
 "use strict";
 
+var $accountContainer = $(".account-container");
+var $loginRegisterContainer = $(".login-register-container");
+var $paginationContainer = $(".pagination-container");
+var $articlesContainer = $(".articles-container");
+var $footerContainer = $("footer");
+
 (function (scope) {
     scope.common = {
         createNavLinkToggle: function createNavLinkToggle(text, targetId) {

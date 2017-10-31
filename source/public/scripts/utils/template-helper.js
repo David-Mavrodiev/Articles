@@ -5,7 +5,7 @@ const articlesdata = window.articlesdata;
 const common = window.common;
 
 ((scope) => {
-    function addArticleCreate($accountContainer) {
+    function addArticleCreate() {
         let articleCreateLink = common.createNavLinkToggle("Create article", "#create-article-modal");
 
         $accountContainer.append(articleCreateLink);
@@ -24,7 +24,7 @@ const common = window.common;
         });
     }
 
-    function addLogoutLink($accountContainer) {
+    function addLogoutLink() {
         let logoutLink = common.createNavLink("Logout", "logout");
 
         logoutLink.on("click", function() {
@@ -38,7 +38,7 @@ const common = window.common;
         $accountContainer.html(logoutLink);
     }
 
-    function addLoginListener($accountContainer) {
+    function addLoginListener() {
         $("#btn-login").on("click", (ev) => {
             let user = {
                 username: $("#login-username").val(),
@@ -50,9 +50,9 @@ const common = window.common;
                     if (resp.success) {
                         localStorage.setItem("username", resp.username);
                         $("#login-modal").modal("hide");
-                        addLogoutLink($accountContainer);
+                        addLogoutLink();
                         if ($.inArray("admin", resp.userrole)) {
-                            addArticleCreate($accountContainer);
+                            addArticleCreate();
                         }
                     } else {
                         document.location = "#/home";
@@ -63,7 +63,7 @@ const common = window.common;
         });
     }
 
-    function addRegisterListener($accountContainer) {
+    function addRegisterListener() {
         $("#btn-register").on("click", (ev) => {
             let user = {
                 username: $("#register-username").val(),
@@ -81,7 +81,7 @@ const common = window.common;
                         $("#register-modal").modal("hide");
                         addLogoutLink($accountContainer);
                         if ($.inArray("admin", resp.user.roles)) {
-                            addArticleCreate($accountContainer);
+                            addArticleCreate();
                         }
                     } else {
                         document.location = "#/home";
@@ -121,7 +121,7 @@ const common = window.common;
     }
 
     scope.helper = {
-        addPagination($paginationContainer) {
+        addPagination() {
             templates.get("pagination").then(template => {
                 var intlData = {
                     "locales": "en-US"
@@ -134,7 +134,7 @@ const common = window.common;
                 $paginationContainer.append(html);
             });
         },
-        addFooter($footerContainer) {
+        addFooter() {
             templates.get("footer").then(template => {
                 var intlData = {
                     "locales": "en-US"
@@ -147,7 +147,7 @@ const common = window.common;
                 $footerContainer.append(html);
             });
         },
-        addLogin($loginRegisterContainer, $accountContainer) {
+        addLogin() {
             templates.get("login").then(template => {
                 var intlData = {
                     "locales": "en-US"
@@ -158,10 +158,10 @@ const common = window.common;
                 });
 
                 $loginRegisterContainer.append(html);
-                addLoginListener($accountContainer);
+                addLoginListener();
             });
         },
-        addRegister($loginRegisterContainer, $accountContainer) {
+        addRegister() {
             templates.get("register").then(template => {
                 var intlData = {
                     "locales": "en-US"
@@ -172,7 +172,7 @@ const common = window.common;
                 });
 
                 $loginRegisterContainer.append(html);
-                addRegisterListener($accountContainer);
+                addRegisterListener();
             });
         },
         addLogoutLink: addLogoutLink,
