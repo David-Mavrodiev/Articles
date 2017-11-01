@@ -1,6 +1,7 @@
 "use strict";
 
 /* globals $ Navigo controllers */
+var router;
 
 $(function () {
 
@@ -8,7 +9,7 @@ $(function () {
     var useHash = true;
     var usersdata = window.usersdata;
 
-    var router = new Navigo(root, useHash);
+    router = new Navigo(root, useHash);
 
     // routing
     router.on("articles", controllers.articles.allArticles).on("articles/:id", controllers.article.articleById).on("home", controllers.home.start).on("*", controllers.home.start).resolve();

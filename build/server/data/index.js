@@ -146,6 +146,23 @@ module.exports = {
             });
         });
     },
+    getArticlesByCategory(category){
+         return new Promise((resolve, reject) => {
+            Article.find({})
+            .where({
+                category: new RegExp(category, "i")
+            })
+            .sort(
+                "title"
+            ).exec((err, articles) => {
+                if (err) {
+                    return reject(err);
+                }
+
+                return resolve(articles);
+            });
+        });
+    },
     articleById(articleId) {
         return new Promise((resolve, reject) => {
             Article.findById(articleId, (err, article) => {

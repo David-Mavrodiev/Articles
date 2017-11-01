@@ -10,6 +10,9 @@ var requester = window.requester;
         getArticles: function getArticles(pageNumber, pageSize, pattern) {
             return requester.getJSON("/api/articles?pageNumber=" + pageNumber + "&pageSize=" + pageSize + "&pattern=" + pattern);
         },
+        getArticlesByCategory: function getArticlesByCategory(category) {
+            return requester.getJSON("/api/articlesByCategory/" + category);
+        },
         getAllArticlesCount: function getAllArticlesCount() {
             return requester.getJSON("/api/articles-count");
         },

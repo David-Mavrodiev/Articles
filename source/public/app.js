@@ -1,4 +1,5 @@
 /* globals $ Navigo controllers */
+var router;
 
 $(() => {
 
@@ -6,7 +7,7 @@ $(() => {
     const useHash = true;
     const usersdata = window.usersdata;
 
-    let router = new Navigo(root, useHash);
+    router = new Navigo(root, useHash);
 
     // routing
     router

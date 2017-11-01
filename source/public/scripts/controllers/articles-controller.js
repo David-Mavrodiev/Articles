@@ -7,24 +7,47 @@ const articlesData = window.articlesdata;
 
 ((scope) => {
 
-    const allArticles = (query) => {
-        console.log(query);
-        var pageNumber = 1;
-        var pageSize = 5;
+    const allArticles = (params, query) => {
+        var queryObj = JSON.parse('{"' + decodeURI(query).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
+        
+        if(queryObj.category === null || queryObj.category === undefined){
+            var pageNumber = queryObj.pageNumber - 1 || 0;
+            var pageSize = queryObj.pageSize || 5;
+            var pattern = queryObj.pattern || '';
 
-        Promise.all([articlesData.getArticles(pageNumber, pageSize, ""), templates.get("articles")])
-            .then(([res, template]) => {
-                const articles = res;
-                var intlData = {
-                    "locales": "en-US"
-                };
-                
-                let html = template({ articles }, {
-                    data: { intl: intlData }
+            Promise.all([articlesData.getArticles(pageNumber, pageSize, pattern), templates.get("articles")])
+                .then(([res, template]) => {
+                    const articles = res;
+                    var intlData = {
+                        "locales": "en-US"
+                    };
+                    
+                    let html = template({ articles }, {
+                        data: { intl: intlData }
+                    });
+
+                    $articlesContainer.html(html);
                 });
+        }else{
+            var category = queryObj.category;
+            Promise.all([articlesData.getArticlesByCategory(category), templates.get("articles")])
+                .then(([res, template]) => {
+                    const articles = res;
+                    var intlData = {
+                        "locales": "en-US"
+                    };
+                    
+                    let html = template({ articles }, {
+                        data: { intl: intlData }
+                    });
 
-                $articlesContainer.html(html);
-            });
+                    $articlesContainer.html(html);
+                });
+        }
+        
+        templateHelper.addPagination();
+        templateHelper.addFooter();
+        templateHelper.addSearchListener();
     }
 
     scope.articles = {

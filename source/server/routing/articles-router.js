@@ -12,6 +12,7 @@ module.exports = app => {
     router
         .get('/api/articles', articlesController.getArticles)
         .get('/api/articles-count', articlesController.getAllArticlesCount)
+        .get('/api/articlesByCategory/:category', articlesController.getArticlesByCategory)
         .post('/api/articles', auth.isAuthenticated, articlesController.createArticle)
         .get('/api/articles/:articleId', dataMiddleware.articleById, articlesController.articleById)
         .put('/api/articles/:articleId', auth.isInRole('admin'), articlesController.updateArticle)

@@ -3,7 +3,7 @@
 </div>
 <div class="col d-flex justify-content-center pages">
     {{#times count}}
-        <a class="nav-link pagination-element" href="#/articles?pageNumber=1&amp;pageSize=5">{{this}}</a>
+        <a class="nav-link pagination-element" href="#/articles?pageNumber={{this}}&amp;pageSize=5">{{this}}</a>
     {{/times}}
 </div>
 <div class="d-flex justify-content-end" id="next">

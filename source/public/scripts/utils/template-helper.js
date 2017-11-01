@@ -64,6 +64,16 @@ const common = window.common;
         });
     }
 
+    function addSearchListener() {
+        console.log("daf");
+        $('#search-box').on('keydown', function(e) {
+            console.log("Click");
+            if (e.which == 13) {
+                router.navigate('/articles/?pageNumber=1&pageSize=5&pattern=' + $(this).val());
+            }
+        });
+    }
+
     function addRegisterListener() {
         $("#btn-register").on("click", (ev) => {
             let user = {
@@ -137,7 +147,7 @@ const common = window.common;
                             data: { intl: intlData }
                         });
 
-                        $paginationContainer.append(html);
+                        $paginationContainer.html(html);
                     });
                 });
         },
@@ -151,7 +161,7 @@ const common = window.common;
                     data: { intl: intlData }
                 });
 
-                $footerContainer.append(html);
+                $footerContainer.html(html);
             });
         },
         addLogin() {
@@ -183,6 +193,7 @@ const common = window.common;
             });
         },
         addLogoutLink: addLogoutLink,
-        addArticleCreate: addArticleCreate
+        addArticleCreate: addArticleCreate,
+        addSearchListener: addSearchListener
     }
 })(window);

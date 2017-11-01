@@ -9,27 +9,53 @@ var articlesData = window.articlesdata;
 
 (function (scope) {
 
-    var allArticles = function allArticles(query) {
-        console.log(query);
-        var pageNumber = 1;
-        var pageSize = 5;
+    var allArticles = function allArticles(params, query) {
+        var queryObj = JSON.parse('{"' + decodeURI(query).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
 
-        Promise.all([articlesData.getArticles(pageNumber, pageSize, ""), templates.get("articles")]).then(function (_ref) {
-            var _ref2 = _slicedToArray(_ref, 2),
-                res = _ref2[0],
-                template = _ref2[1];
+        if (queryObj.category === null || queryObj.category === undefined) {
+            var pageNumber = queryObj.pageNumber - 1 || 0;
+            var pageSize = queryObj.pageSize || 5;
+            var pattern = queryObj.pattern || '';
 
-            var articles = res;
-            var intlData = {
-                "locales": "en-US"
-            };
+            Promise.all([articlesData.getArticles(pageNumber, pageSize, pattern), templates.get("articles")]).then(function (_ref) {
+                var _ref2 = _slicedToArray(_ref, 2),
+                    res = _ref2[0],
+                    template = _ref2[1];
 
-            var html = template({ articles: articles }, {
-                data: { intl: intlData }
+                var articles = res;
+                var intlData = {
+                    "locales": "en-US"
+                };
+
+                var html = template({ articles: articles }, {
+                    data: { intl: intlData }
+                });
+
+                $articlesContainer.html(html);
             });
+        } else {
+            var category = queryObj.category;
+            Promise.all([articlesData.getArticlesByCategory(category), templates.get("articles")]).then(function (_ref3) {
+                var _ref4 = _slicedToArray(_ref3, 2),
+                    res = _ref4[0],
+                    template = _ref4[1];
 
-            $articlesContainer.html(html);
-        });
+                var articles = res;
+                var intlData = {
+                    "locales": "en-US"
+                };
+
+                var html = template({ articles: articles }, {
+                    data: { intl: intlData }
+                });
+
+                $articlesContainer.html(html);
+            });
+        }
+
+        templateHelper.addPagination();
+        templateHelper.addFooter();
+        templateHelper.addSearchListener();
     };
 
     scope.articles = {

@@ -8,6 +8,9 @@ const requester = window.requester;
         getArticles(pageNumber, pageSize, pattern) {
             return requester.getJSON(`/api/articles?pageNumber=${pageNumber}&pageSize=${pageSize}&pattern=${pattern}`);
         },
+        getArticlesByCategory(category){
+            return requester.getJSON(`/api/articlesByCategory/${category}`);
+        },
         getAllArticlesCount(){
             return requester.getJSON(`/api/articles-count`);
         },
