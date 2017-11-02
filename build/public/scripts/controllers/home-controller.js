@@ -53,6 +53,7 @@ var templateHelper = window.helper;
             templateHelper.addPagination();
             templateHelper.addFooter();
             templateHelper.addSearchListener();
+            $('.detail-article-container').html('');
         });
     };
 

@@ -15,7 +15,7 @@ const requester = window.requester;
             return requester.getJSON(`/api/articles-count`);
         },
         getArticleById(id) {
-            return requester.getJSON(`/api/articles/getbyid?id=${id}`);
+            return requester.getJSON(`/api/articles/${id}`);
         },
         addArticle(article) {
             return requester.postJSON(`/api/articles`, article);

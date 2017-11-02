@@ -144,7 +144,6 @@ var common = window.common;
                     };
 
                     count = count / 5;
-
                     var html = template({ count: count }, {
                         data: { intl: intlData }
                     });

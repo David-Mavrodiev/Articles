@@ -32,6 +32,7 @@ var articlesData = window.articlesdata;
                 });
 
                 $articlesContainer.html(html);
+                $('.detail-article-container').html('');
             });
         } else {
             var category = queryObj.category;
@@ -50,6 +51,7 @@ var articlesData = window.articlesdata;
                 });
 
                 $articlesContainer.html(html);
+                $('.detail-article-container').html('');
             });
         }
 

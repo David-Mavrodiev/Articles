@@ -17,7 +17,7 @@ var requester = window.requester;
             return requester.getJSON("/api/articles-count");
         },
         getArticleById: function getArticleById(id) {
-            return requester.getJSON("/api/articles/getbyid?id=" + id);
+            return requester.getJSON("/api/articles/" + id);
         },
         addArticle: function addArticle(article) {
             return requester.postJSON("/api/articles", article);

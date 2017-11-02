@@ -9,7 +9,7 @@ const articlesData = window.articlesdata;
 
     const allArticles = (params, query) => {
         var queryObj = JSON.parse('{"' + decodeURI(query).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
-        
+
         if(queryObj.category === null || queryObj.category === undefined){
             var pageNumber = queryObj.pageNumber - 1 || 0;
             var pageSize = queryObj.pageSize || 5;
@@ -21,12 +21,13 @@ const articlesData = window.articlesdata;
                     var intlData = {
                         "locales": "en-US"
                     };
-                    
+
                     let html = template({ articles }, {
                         data: { intl: intlData }
                     });
 
                     $articlesContainer.html(html);
+                    $('.detail-article-container').html('');
                 });
         }else{
             var category = queryObj.category;
@@ -36,15 +37,16 @@ const articlesData = window.articlesdata;
                     var intlData = {
                         "locales": "en-US"
                     };
-                    
+
                     let html = template({ articles }, {
                         data: { intl: intlData }
                     });
 
                     $articlesContainer.html(html);
+                    $('.detail-article-container').html('');
                 });
         }
-        
+
         templateHelper.addPagination();
         templateHelper.addFooter();
         templateHelper.addSearchListener();

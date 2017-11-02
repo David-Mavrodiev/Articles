@@ -10,10 +10,25 @@ var articlesData = window.articlesdata;
 (function (scope) {
     var articleById = function articleById(params) {
         var id = params.id;
-        Promise.all([articlesData.getArticleById(id), templates.get("article")]).then(function (_ref) {
+        console.log("QWQWQ");
+        Promise.all([articlesData.getArticleById(id), templates.get("detail-article")]).then(function (_ref) {
             var _ref2 = _slicedToArray(_ref, 2),
                 res = _ref2[0],
                 template = _ref2[1];
+
+            var article = res;
+            console.log(article);
+            var intlData = {
+                "locales": "en-US"
+            };
+
+            var html = template({ article: article }, {
+                data: { intl: intlData }
+            });
+
+            $('.articles-container').html('');
+            $('.pagination-container').html('');
+            $('.detail-article-container').html(html);
         });
     };
 

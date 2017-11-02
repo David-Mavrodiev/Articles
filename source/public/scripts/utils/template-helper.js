@@ -142,7 +142,6 @@ const common = window.common;
                         };
 
                         count = count / 5;
-
                         let html = template({ count }, {
                             data: { intl: intlData }
                         });

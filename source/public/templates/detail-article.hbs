@@ -1,0 +1,70 @@
+<div class="detailed-article-container">
+    <div class="row no-gutters">
+        <div class="col- da-details">
+            <div class="da-image-container">
+
+                <div class="da-category">
+                    {{article.category}}
+                </div>
+                <img class="da-image" src="{{article.image}}">
+                <div class="da-date">
+                    <span>{{getMonthName article.creationDate}}</span>
+                    <span> {{getDayNumber article.date}}</span>
+                </div>
+
+            </div>
+
+            <div class="da-tags-container">
+                <h3>TAGS</h3>
+                <span>{{article.category}}</span>
+            </div>
+
+            <div class="da-share-icons-container">
+                <h3>SHARE THIS</h3>
+                <span>
+                    <a target="popup" onclick="window.open('http://twitter.com/intent/tweet?status={{article.title}}+https://raw.githack.com/KirilVelichkov/Newsletter-Client/master/dist/index.html#/article/{{article._id}}','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;"
+                        href="http://twitter.com/intent/tweet?status={{article.title}}+https://raw.githack.com/KirilVelichkov/Newsletter-Client/master/dist/index.html/article/{{article._id}}">
+                     <img src="/public/images/twitter.png">
+                    </a>
+                </span>
+
+                <span>
+                    <a target="popup" onclick="window.open('http://www.facebook.com/share.php?u=https://raw.githack.com/KirilVelichkov/Newsletter-Client/master/dist/index.html#/article/{{article._id}}&title={{article.title}}','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;"
+                        href="http://www.facebook.com/share.php?u=https://raw.githack.com/KirilVelichkov/Newsletter-Client/master/dist/index.html/article/{{article._id}}&title={{article.title}}">
+                     <img src="/public/images/facebook.png">
+                    </a>
+                </span>
+
+                <span>
+                    <a href="#">
+                     <img src="/public/images/share-icon3.png">
+                    </a>
+                </span>
+
+                <span>
+                    <a href="#">
+                     <img src="/public/images/share-icon4.png">
+                    </a>
+                </span>
+
+                <span>
+                    <a href="#">
+                     <img src="/public/images/share-icon5.png">
+                    </a>
+                </span>
+            </div>
+        </div>
+
+        <div class="col- da-content-container">
+            <h1>{{article.title}}</h1>
+
+            <div class="da-author">
+                POSTED BY {{article.owner.username}} IN {{article.category}} | {{article.comments.length}} COMMENTS
+            </div>
+
+            <div class="da-content">
+                {{article.description}}
+            </div>
+        </div>
+    </div>
+</div>
