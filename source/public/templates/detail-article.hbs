@@ -68,3 +68,27 @@
         </div>
     </div>    
 </div>
+
+<div class="comments-container">
+    <div class="comments-count-holder">
+        {{article.comments.length}} COMMENTS
+    </div>
+    {{#each article.comments}}
+        <div class="comment row">
+            <div class="col- comment-image-holder">
+                <img class="comment-profile-image" src="{{this.owner.image}}">
+            </div>
+            <div class="col- comment-content-holder">
+                <h4>{{this.owner.username}}</h4>
+                <p>{{this.content}}</p>
+            </div>
+        </div>
+    {{/each}}
+    <div class="create-comment-holder">
+        <h4>LEAVE COMMENT<h4>
+        <textarea id="comment" rows="8"></textarea>
+        <div>
+            <button>CREATE</button>
+        </div>
+    <div>
+</div>

@@ -281,41 +281,6 @@ header {
   border-top: 1px dotted #a6a6a6;
   color: #7a7575; }
 
-.article-comments-container-parent {
-  justify-content: initial !important; }
-
-.comments-count {
-  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
-  color: #9a1d0d;
-  letter-spacing: 1px;
-  font-size: 40px;
-  margin-top: 20px;
-  margin-bottom: 20px; }
-
-.comments-list-item, .replied-comments-list-item {
-  border-top: 1px dotted #a6a6a6; }
-
-.comment-date {
-  font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
-  color: white;
-  text-shadow: 1px 1px 1px grey, -1px -1px 1px grey;
-  position: absolute;
-  font-size: 28px;
-  letter-spacing: 1px;
-  top: 0;
-  right: 2px; }
-  .comment-date span {
-    display: block; }
-    .comment-date span:nth-child(2) {
-      text-align: right;
-      margin-top: -16px; }
-
-.comment-item-content-container {
-  margin-top: 25px; }
-  .comment-item-content-container h4 {
-    font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
-    color: #2c2c2c; }
-
 .da-tags-container {
   margin-top: 25px;
   margin-left: 30px; }
@@ -339,7 +304,79 @@ header {
     font-family: "LeagueGothic","Helvetica Neue","Helvetica","Sans Serif";
     color: #2c2c2c; }
 
-/*------------------------------------ACCOUNT-----------------------------------------
+/*------------------------------DETAIL ARTICLE COMMENTS----------------------------------
+---------------------------------------------------------------------------------------*/
+.comments-container {
+  background-color: white;
+  margin-left: 100px;
+  margin-top: 100px;
+  width: 70%;
+  height: 40%;
+  min-height: 300px; }
+
+.comment-image-holder {
+  box-shadow: 0 0 5px 2px grey;
+  margin-top: 40px;
+  position: relative;
+  width: 100px;
+  height: 100px; }
+
+.comment-profile-image {
+  width: 100%;
+  height: 100%; }
+
+.comment {
+  width: 90%;
+  padding-bottom: 50px;
+  margin-left: 50px;
+  border-top: 1px dotted #a6a6a6; }
+
+.comments-count-holder {
+  font-family: LeagueGothic,Helvetica Neue,Helvetica,Sans Serif;
+  color: #9a1d0d;
+  letter-spacing: 1px;
+  font-size: 40px;
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-bottom: 20px; }
+
+.comment-content-holder {
+  margin-top: 30px;
+  margin-left: 20px; }
+  .comment-content-holder h4 {
+    font-family: LeagueGothic,Helvetica Neue,Helvetica,Sans Serif;
+    color: #2c2c2c; }
+  .comment-content-holder p {
+    color: #7a7575; }
+
+.create-comment-holder {
+  border-top: 1px dotted #a6a6a6; }
+  .create-comment-holder h4 {
+    font-family: LeagueGothic,Helvetica Neue,Helvetica,Sans Serif;
+    color: #9a1d0d;
+    letter-spacing: 1px;
+    font-size: 40px;
+    margin-top: 50px;
+    margin-left: 50px; }
+  .create-comment-holder div {
+    margin-left: 410px; }
+  .create-comment-holder textarea {
+    border: 1px solid #d6d6d6;
+    width: 500px;
+    box-shadow: inset 2px 2px 1px #e6e5e5;
+    background-color: #f6f6f6;
+    resize: none;
+    font-size: 20px; }
+  .create-comment-holder button {
+    font-family: Droid Sans,sans-serif;
+    color: #7a7575;
+    padding: 10px 13px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    display: inline-block; }
+
+/*------------------------------------PAGINATION-----------------------------------------
 ---------------------------------------------------------------------------------------*/
 .pagination-element {
   font-size: 30px; }
