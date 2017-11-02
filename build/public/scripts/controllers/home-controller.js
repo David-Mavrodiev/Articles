@@ -33,6 +33,7 @@ var templateHelper = window.helper;
 
             usersdata.isLoggedIn().then(function (username) {
                 if (username === null) {
+                    $accountContainer.html('');
                     var loginLink = common.createNavLinkToggle("Login", "#login-modal");
                     var registerLink = common.createNavLinkToggle("Register", "#register-modal");
                     $accountContainer.append(loginLink, registerLink);
