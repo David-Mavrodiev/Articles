@@ -21,7 +21,7 @@ const requester = window.requester;
             return requester.postJSON(`/api/articles`, article);
         },
         addComment(comment) {
-            return requester.putJSON(`/api/articles/addcomment`, comment);
+            return requester.putJSON(`/api/articles/${comment.articleId}/comments`, comment);
         },
     }
 

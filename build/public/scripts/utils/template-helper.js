@@ -135,6 +135,19 @@ var common = window.common;
         });
     }
 
+    function addCreateCommentListener(articleId) {
+        $("#add-comment").on("click", function () {
+            var body = {
+                articleId: articleId,
+                content: $("#comment-content").val()
+            };
+
+            articlesdata.addComment(body).then(function (comment) {
+                router.navigate("/articles/" + articleId);
+            });
+        });
+    }
+
     scope.helper = {
         addPagination: function addPagination() {
             articlesdata.getAllArticlesCount().then(function (count) {
@@ -196,6 +209,7 @@ var common = window.common;
 
         addLogoutLink: addLogoutLink,
         addArticleCreate: addArticleCreate,
-        addSearchListener: addSearchListener
+        addSearchListener: addSearchListener,
+        addCreateCommentListener: addCreateCommentListener
     };
 })(window);

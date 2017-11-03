@@ -10,13 +10,23 @@ var articlesData = window.articlesdata;
 (function (scope) {
     var articleById = function articleById(params) {
         var id = params.id;
-        console.log("QWQWQ");
+
         Promise.all([articlesData.getArticleById(id), templates.get("detail-article")]).then(function (_ref) {
             var _ref2 = _slicedToArray(_ref, 2),
                 res = _ref2[0],
                 template = _ref2[1];
 
             var article = res;
+
+            //console.log(article.comments);
+            for (var i = 0; i < article.comments.length; i++) {
+                var comment = article.comments[i];
+                usersdata.getUserByUsername(article.comments[i].author.username).then(function (user) {
+                    //console.log(comment);
+                    comment.author.image = user.imageUrl;
+                });
+                article.comments[i] = comment;
+            }
             console.log(article);
             var intlData = {
                 "locales": "en-US"
@@ -29,6 +39,7 @@ var articlesData = window.articlesdata;
             $('.articles-container').html('');
             $('.pagination-container').html('');
             $('.detail-article-container').html(html);
+            templateHelper.addCreateCommentListener(id);
         });
     };
 
