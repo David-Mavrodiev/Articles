@@ -141,9 +141,13 @@ const common = window.common;
 
             articlesdata.addComment(body)
                 .then((comment) => {
-                    router.navigate("/articles/" + articleId);
+                    location.reload();
                 });
         });
+    }
+
+    function addRightBar(){
+        
     }
 
     scope.helper = {

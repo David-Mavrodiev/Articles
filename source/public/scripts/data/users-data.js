@@ -8,6 +8,12 @@ const requester = window.requester;
         getUserByUsername(username){
             return requester.getJSON("/api/users/" + username);
         },
+        getUserByUsernameSync(username){
+            requester.getJSON("/api/users/" + username).then(user => {
+                console.log(user);
+                return user;
+            });
+        },
         login(user) {
             return requester.putJSON("/api/users/login", user);
         },

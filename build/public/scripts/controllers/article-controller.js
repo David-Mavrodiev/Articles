@@ -10,36 +10,44 @@ var articlesData = window.articlesdata;
 (function (scope) {
     var articleById = function articleById(params) {
         var id = params.id;
-
+        var article;
+        var promises = [];
         Promise.all([articlesData.getArticleById(id), templates.get("detail-article")]).then(function (_ref) {
             var _ref2 = _slicedToArray(_ref, 2),
                 res = _ref2[0],
                 template = _ref2[1];
 
             var article = res;
+            var promises = [];
 
-            //console.log(article.comments);
-            for (var i = 0; i < article.comments.length; i++) {
-                var comment = article.comments[i];
-                usersdata.getUserByUsername(article.comments[i].author.username).then(function (user) {
-                    //console.log(comment);
+            article.comments.forEach(function (comment) {
+                promises.push(usersdata.getUserByUsername(comment.author.username).then(function (user) {
                     comment.author.image = user.imageUrl;
-                });
-                article.comments[i] = comment;
-            }
-            console.log(article);
-            var intlData = {
-                "locales": "en-US"
-            };
-
-            var html = template({ article: article }, {
-                data: { intl: intlData }
+                }));
             });
 
-            $('.articles-container').html('');
-            $('.pagination-container').html('');
-            $('.detail-article-container').html(html);
-            templateHelper.addCreateCommentListener(id);
+            Promise.all(promises).then(function () {
+                var intlData = {
+                    "locales": "en-US"
+                };
+
+                var html = template({ article: article }, {
+                    data: { intl: intlData }
+                });
+
+                $('.articles-container').html('');
+                $('.pagination-container').html('');
+                $('.detail-article-container').html(html);
+                templateHelper.addCreateCommentListener(id);
+
+                $accountContainer.html('');
+                var loginLink = common.createNavLinkToggle("Login", "#login-modal");
+                var registerLink = common.createNavLinkToggle("Register", "#register-modal");
+                $accountContainer.append(loginLink, registerLink);
+
+                templateHelper.addLogin();
+                templateHelper.addRegister();
+            });
         });
     };
 

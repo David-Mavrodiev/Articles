@@ -10,6 +10,12 @@ var requester = window.requester;
         getUserByUsername: function getUserByUsername(username) {
             return requester.getJSON("/api/users/" + username);
         },
+        getUserByUsernameSync: function getUserByUsernameSync(username) {
+            requester.getJSON("/api/users/" + username).then(function (user) {
+                console.log(user);
+                return user;
+            });
+        },
         login: function login(user) {
             return requester.putJSON("/api/users/login", user);
         },

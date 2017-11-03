@@ -308,11 +308,15 @@ header {
 ---------------------------------------------------------------------------------------*/
 .comments-container {
   background-color: white;
-  margin-left: 300px;
+  margin-left: 100px;
   margin-top: 30px;
   width: 70%;
   height: 40%;
-  min-height: 300px; }
+  min-height: 300px;
+  -webkit-border-image: url("../images/bottom-line.jpg") 30 round;
+  border-image: url("../images/bottom-line.jpg") 30 round;
+  border-top: 9px solid;
+  border-bottom: 9px solid; }
 
 .comment-image-holder {
   box-shadow: 0 0 5px 2px grey;
@@ -359,10 +363,10 @@ header {
     margin-top: 50px;
     margin-left: 50px; }
   .create-comment-holder div {
-    margin-left: 410px; }
+    margin-left: 310px; }
   .create-comment-holder textarea {
     border: 1px solid #d6d6d6;
-    width: 500px;
+    width: 400px;
     box-shadow: inset 2px 2px 1px #e6e5e5;
     background-color: #f6f6f6;
     resize: none;
@@ -533,6 +537,16 @@ footer {
     width: 200px;
     text-align: center;
     padding-bottom: 20px; } }
+
+@media (max-width: 840px) {
+  .comments-container {
+    min-height: 150px;
+    margin-left: 0px;
+    width: 100%; }
+  .create-comment-holder textarea {
+    width: 300px; }
+  .create-comment-holder div {
+    margin-left: 210px; } }
 
 @media (max-width: 800px) {
   .logo-holder img {

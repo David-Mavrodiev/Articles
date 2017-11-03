@@ -143,10 +143,12 @@ var common = window.common;
             };
 
             articlesdata.addComment(body).then(function (comment) {
-                router.navigate("/articles/" + articleId);
+                location.reload();
             });
         });
     }
+
+    function addRightBar() {}
 
     scope.helper = {
         addPagination: function addPagination() {
