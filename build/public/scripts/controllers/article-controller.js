@@ -12,12 +12,13 @@ var articlesData = window.articlesdata;
         var id = params.id;
         var article;
         var promises = [];
-        Promise.all([articlesData.getArticleById(id), templates.get("detail-article")]).then(function (_ref) {
-            var _ref2 = _slicedToArray(_ref, 2),
-                res = _ref2[0],
-                template = _ref2[1];
+        Promise.all([articlesData.getArticleById(id), articlesData.getArticles(0, 5, ""), templates.get("detail-article"), templates.get("right-bar")]).then(function (_ref) {
+            var _ref2 = _slicedToArray(_ref, 4),
+                article = _ref2[0],
+                articles = _ref2[1],
+                articleTemplate = _ref2[2],
+                rightBarTemplate = _ref2[3];
 
-            var article = res;
             var promises = [];
 
             article.comments.forEach(function (comment) {
@@ -26,12 +27,12 @@ var articlesData = window.articlesdata;
                 }));
             });
 
-            Promise.all(promises).then(function () {
-                var intlData = {
-                    "locales": "en-US"
-                };
+            var intlData = {
+                "locales": "en-US"
+            };
 
-                var html = template({ article: article }, {
+            Promise.all(promises).then(function () {
+                var html = articleTemplate({ article: article }, {
                     data: { intl: intlData }
                 });
 
@@ -48,6 +49,12 @@ var articlesData = window.articlesdata;
                 templateHelper.addLogin();
                 templateHelper.addRegister();
             });
+
+            var html = rightBarTemplate({ articles: articles }, {
+                data: { intl: intlData }
+            });
+
+            $('.right-bar-articles-container').html(html);
         });
     };
 

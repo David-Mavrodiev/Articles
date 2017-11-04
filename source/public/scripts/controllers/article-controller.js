@@ -10,9 +10,8 @@ const articlesData = window.articlesdata;
         var id = params.id;
         var article;
         var promises = [];
-        Promise.all([articlesData.getArticleById(id), templates.get("detail-article")])
-            .then(([res, template]) => {
-                var article = res;
+        Promise.all([articlesData.getArticleById(id), articlesData.getArticles(0, 5, ""), templates.get("detail-article"), templates.get("right-bar")])
+            .then(([article, articles, articleTemplate, rightBarTemplate]) => {
                 var promises = [];
                 
                 article.comments.forEach((comment) => {
@@ -24,12 +23,12 @@ const articlesData = window.articlesdata;
                     );
                 })
                 
-                Promise.all(promises).then(() => {
-                    var intlData = {
-                        "locales": "en-US"
-                    };
+                var intlData = {
+                    "locales": "en-US"
+                };
 
-                    let html = template({ article }, {
+                Promise.all(promises).then(() => {
+                    let html = articleTemplate({ article }, {
                         data: { intl: intlData }
                     });
 
@@ -46,6 +45,12 @@ const articlesData = window.articlesdata;
                     templateHelper.addLogin();
                     templateHelper.addRegister();
                 });
+
+                let html = rightBarTemplate({ articles }, {
+                    data: { intl: intlData }
+                });
+
+                $('.right-bar-articles-container').html(html);
             });
     }
 
