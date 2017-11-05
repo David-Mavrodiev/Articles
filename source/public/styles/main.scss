@@ -516,7 +516,17 @@ nav {
 
     .right-bar-content {
          margin-left: 20px;
-        margin-top: 10px;
+         margin-top: 10px;
+
+         b {
+            a {
+              display: block;
+              color: #626262;
+            }
+            small {
+              color: #A1A1A1;
+            }
+         }
     }
 
     .right-bar-image {
