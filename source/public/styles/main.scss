@@ -490,7 +490,7 @@ nav {
     width: 90%;
     height: 30%;
     margin-top: 100px;
-    background-color: white;
+    background-color: #E7E7E7;
     .nav-item {
         background-color: #D6D6D6;
         color: $main-theme-color;
@@ -530,12 +530,47 @@ nav {
 
     .nav-item:has(.active){
         border: 0px !important;
+        background-color: #E7E7E7 !important;
+    }
+
+    .nav-link.active{
+        background-color: #E7E7E7;
     }
 
     .nav-link {
         color: $main-theme-color;
-        font-weight: 900;
-        text-align: left !important;
+        font-weight: bold;
+    }
+
+    h5 {
+        font-size: 30px;
+        font-family: LeagueGothic,Helvetica Neue,Helvetica,Sans Serif;
+    }
+}
+
+.custom-text-holder {
+    -webkit-border-image: url(../images/bottom-line.jpg) 30 round;
+    border-bottom: 9px solid;
+    margin-left: 10px;
+    width: 90%;
+    height: 30%;
+    margin-top: 10px;
+    background-color: #E7E7E7;
+    .title {
+        padding-top: 10px;
+        border-bottom: 1px dotted #a6a6a6;
+        h5 {
+            margin-left: 10px;
+            color: $main-theme-color;
+            font-size: 40px;
+            font-family: LeagueGothic,Helvetica Neue,Helvetica,Sans Serif;
+        }   
+    }
+    p {
+        width: 70%;
+        color: grey;
+        margin-left: 40px;
+        line-height: 200%;
     }
 }
 

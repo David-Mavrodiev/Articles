@@ -10,8 +10,8 @@ const articlesData = window.articlesdata;
         var id = params.id;
         var article;
         var promises = [];
-        Promise.all([articlesData.getArticleById(id), articlesData.getArticles(0, 5, ""), templates.get("detail-article"), templates.get("right-bar")])
-            .then(([article, articles, articleTemplate, rightBarTemplate]) => {
+        Promise.all([articlesData.getArticleById(id), articlesData.getArticlesByCategory("Politics"), articlesData.getArticlesByCategory("Sport"), templates.get("detail-article"), templates.get("right-bar")])
+            .then(([article, politicsArticles, sportArticles, articleTemplate, rightBarTemplate]) => {
                 var promises = [];
                 
                 article.comments.forEach((comment) => {
@@ -32,25 +32,29 @@ const articlesData = window.articlesdata;
                         data: { intl: intlData }
                     });
 
-                    $('.articles-container').html('');
-                    $('.pagination-container').html('');
-                    $('.detail-article-container').html(html);
+                    $articlesContainer.html('');
+                    $paginationContainer.html('');
+                    $detailsArticleContainer.html(html);
                     templateHelper.addCreateCommentListener(id);
 
                     $accountContainer.html('');
-                    let loginLink = common.createNavLinkToggle("Login", "#login-modal");
-                    let registerLink = common.createNavLinkToggle("Register", "#register-modal");
-                    $accountContainer.append(loginLink, registerLink);
-                    
-                    templateHelper.addLogin();
-                    templateHelper.addRegister();
                 });
 
-                let html = rightBarTemplate({ articles }, {
+                politicsArticles = politicsArticles.slice(Math.max(politicsArticles.length - 4, 1));
+                sportArticles = sportArticles.slice(Math.max(sportArticles.length - 4, 1));
+                
+                let mixArticles = [];
+                mixArticles.push(...politicsArticles.slice(Math.max(politicsArticles.length - 2, 0)));
+                mixArticles.push(...sportArticles.slice(Math.max(sportArticles.length - 2, 0)));
+                
+                console.log(mixArticles);
+                let html = rightBarTemplate({ politicsArticles, sportArticles, mixArticles }, {
                     data: { intl: intlData }
                 });
 
-                $('.right-bar-articles-container').html(html);
+                $rightBarContainer.html(html);
+                templateHelper.addFooter();
+                templateHelper.addSearchListener();
             });
     }
 

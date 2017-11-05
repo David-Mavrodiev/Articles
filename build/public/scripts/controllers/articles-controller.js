@@ -32,7 +32,7 @@ var articlesData = window.articlesdata;
                 });
 
                 $articlesContainer.html(html);
-                $('.detail-article-container').html('');
+                $detailsArticleContainer.html('');
             });
         } else {
             var category = queryObj.category;
@@ -51,13 +51,14 @@ var articlesData = window.articlesdata;
                 });
 
                 $articlesContainer.html(html);
-                $('.detail-article-container').html('');
+                $detailsArticleContainer.html('');
             });
         }
 
         templateHelper.addPagination();
         templateHelper.addFooter();
         templateHelper.addSearchListener();
+        $rightBarContainer.html('');
     };
 
     scope.articles = {

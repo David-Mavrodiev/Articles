@@ -8,6 +8,8 @@ var $paginationContainer = $(".pagination-container");
 var $articlesContainer = $(".articles-container");
 var $footerContainer = $("footer");
 var $articleCreateContainer = $(".article-create-container");
+var $rightBarContainer = $('.right-bar-wrapper');
+var $detailsArticleContainer = $('.detail-article-container');
 
 Handlebars.registerHelper("getMonthName", function (date) {
     var d = new Date(date);

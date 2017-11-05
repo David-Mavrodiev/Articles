@@ -1,15 +1,16 @@
-<div>
+<div class="right-bar-articles-container">
+  <div>
   <ul class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#politics"><h5>POLITICS</h5></a></li>
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#politics"><h5>POLITICS</h5></a></li>
     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#sport"><h5>SPORT</h5></a></li>
-    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#random"><h5>RANDOM</h5></a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#random"><h5>RANDOM</h5></a></li>
   </ul>
 </div>
 
 <!-- Tab panes -->
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="politics">
-    {{#each articles}}
+    {{#each politicsArticles}}
         <div class="row small-article-holder">
           <div class="col- right-bar-image-holder">
             <img class="right-bar-image" src="{{this.image}}" />      
@@ -21,16 +22,54 @@
     {{/each}}
   </div>
   <div role="tabpanel" class="tab-pane" id="sport">
-
+      {{#each sportArticles}}
+        <div class="row small-article-holder">
+          <div class="col- right-bar-image-holder">
+            <img class="right-bar-image" src="{{this.image}}" />      
+          </div>
+          <div class="col- right-bar-content">
+            <b>{{this.title}}</b>
+          </div>
+        </div>
+      {{/each}}
   </div>
   <div role="tabpanel" class="tab-pane" id="random">
-
+      {{#each mixArticles}}
+        <div class="row small-article-holder">
+          <div class="col- right-bar-image-holder">
+            <img class="right-bar-image" src="{{this.image}}" />      
+          </div>
+          <div class="col- right-bar-content">
+            <b>{{this.title}}</b>
+          </div>
+        </div>
+      {{/each}}
   </div>
 </div>
+</div>
 
-<script>
-  $('a').click(function(e) {
-    e.preventDefault()
-    $(this).parent().removeClass('active');
-  })
-</script>
+<div class="custom-text-holder">
+  <div class="title">
+    <h5>CUSTOM TEXT WIDGET</h5>
+  </div>
+  <p>
+    Vivamus set massa at metus gravida
+    Fusce suscipit sit amet sapien placerat ultrices
+    Dignisim agestas posuere lorem
+    set ipsum urhah, facilis quis elefient
+    Sedales sed lectus integer felis eu ipsum
+  </p>
+</div>
+
+<div class="custom-text-holder">
+  <div class="title">
+    <h5>CUSTOM TEXT WIDGET</h5>
+  </div>
+  <p>
+    Vivamus set massa at metus gravida
+    Fusce suscipit sit amet sapien placerat ultrices
+    Dignisim agestas posuere lorem
+    set ipsum urhah, facilis quis elefient
+    Sedales sed lectus integer felis eu ipsum
+  </p>
+</div>
