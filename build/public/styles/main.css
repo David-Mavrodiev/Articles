@@ -26,6 +26,7 @@ a {
 /*------------------------------------NAVIGATION---------------------------------------
 ---------------------------------------------------------------------------------------*/
 .logo-holder {
+  width: 95%;
   position: relative;
   left: 18px;
   top: 5px; }
@@ -75,6 +76,7 @@ nav .nav {
 /*------------------------------------ARTICLES-----------------------------------------
 ---------------------------------------------------------------------------------------*/
 .articles-container {
+  width: 95%;
   margin-left: 25px;
   margin-top: 40px; }
 
@@ -306,6 +308,10 @@ nav .nav {
 
 /*------------------------------DETAIL ARTICLE COMMENTS----------------------------------
 ---------------------------------------------------------------------------------------*/
+.detail-article-row {
+  width: 95%;
+  padding-bottom: 50px; }
+
 .comments-container {
   background-color: white;
   margin-left: 100px;
@@ -446,7 +452,7 @@ nav .nav {
     .custom-text-holder .title h5 {
       margin-left: 10px;
       color: #9a1d0d;
-      font-size: 40px;
+      font-size: 30px;
       font-family: LeagueGothic,Helvetica Neue,Helvetica,Sans Serif; }
   .custom-text-holder p {
     width: 70%;
@@ -666,4 +672,8 @@ footer {
 
 @media (max-width: 320px) {
   .login-register-container .modal-dialog {
-    width: 240px; } }
+    width: 240px; }
+  .create-comment-holder textarea {
+    width: 200px; }
+  .create-comment-holder div {
+    margin-left: 110px; } }

@@ -49,6 +49,7 @@ a {
 ---------------------------------------------------------------------------------------*/
 
 .logo-holder {
+    width: 95%;
     position: relative;
     left: 18px;
     top: 5px;
@@ -115,6 +116,7 @@ nav {
 ---------------------------------------------------------------------------------------*/
 
 .articles-container {
+    width: 95%;
     margin-left: 25px;
     margin-top: 40px;
 }
@@ -390,6 +392,10 @@ nav {
 
 /*------------------------------DETAIL ARTICLE COMMENTS----------------------------------
 ---------------------------------------------------------------------------------------*/
+.detail-article-row{
+    width: 95%;
+    padding-bottom: 50px;
+}
 
 .comments-container{
     background-color: white;
@@ -572,7 +578,7 @@ nav {
         h5 {
             margin-left: 10px;
             color: $main-theme-color;
-            font-size: 40px;
+            font-size: 30px;
             font-family: LeagueGothic,Helvetica Neue,Helvetica,Sans Serif;
         }   
     }
@@ -845,5 +851,14 @@ footer {
 @media (max-width: 320px) {
     .login-register-container .modal-dialog {
         width: 240px;
+    }
+
+    .create-comment-holder{
+        textarea{
+            width: 200px;
+        }
+        div{
+            margin-left: 110px;
+        }
     }
 }

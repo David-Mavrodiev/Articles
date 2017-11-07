@@ -1,6 +1,6 @@
 'use strict';
 
-const PORT = 3007;
+const PORT = 3008;
 
 const app = require('./server/config/app');
 
