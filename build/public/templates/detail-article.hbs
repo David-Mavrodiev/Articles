@@ -82,7 +82,7 @@
                 <h4>{{this.author.username}}</h4>
                 <p>{{this.content}}</p>
             </div>
-            <input type="button" value="Reply" data-articleid="{{article._id}}" data-commentid="{{this._id}}" data-toggle="modal" data-target="#reply-modal" />
+            <input class="reply-modal-btn" type="button" value="Reply" data-articleid="{{../article._id}}" data-commentid="{{this._id}}" data-toggle="modal" data-target="#reply-modal" />
 
             <div class="replies">
                 {{#each this.replies}}

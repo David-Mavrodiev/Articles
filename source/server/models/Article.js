@@ -38,8 +38,7 @@ const articleSchema = new mongoose.Schema({
         replies: [{
             content: {
                 type: String,
-                required: true,
-                minlength: 5
+                required: true
             },
             author: {
                 username: String

@@ -25,7 +25,6 @@ module.exports = function(data) {
             data.getPagedArticles(pageNumber, pageSize, pattern)
                 .then(articles => res.status(200).json(articles))
                 .catch(error => {
-                    console.log("TEEEEEST");
                     res.status(500).json(error);
                 });
         },
@@ -124,6 +123,8 @@ module.exports = function(data) {
                 author: req.user.username
             };
             console.log(reply);
+            console.log(articleId);
+            console.log(commentId);
             return data.addReply(articleId, commentId, reply)
                 .then((c) => {
                     return res.status(201).json({

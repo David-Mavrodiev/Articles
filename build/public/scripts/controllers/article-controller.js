@@ -38,7 +38,7 @@ var articlesData = window.articlesdata;
                 var html = articleTemplate({ article: article }, {
                     data: { intl: intlData }
                 });
-
+                console.log(article);
                 $articlesContainer.html('');
                 $paginationContainer.html('');
                 $detailsArticleContainer.html(html);

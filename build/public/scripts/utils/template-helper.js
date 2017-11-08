@@ -69,11 +69,27 @@ var common = window.common;
     function addReplyListener() {
         var _this = this;
 
-        console.log($("#btn-reply"));
+        var btnReply = $("#btn-reply");
+
+        $(".reply-modal-btn").on("click", function (ev) {
+            console.log($(_this));
+            var articleId = $(ev.target).attr("data-articleid");
+            var commentId = $(ev.target).attr("data-commentid");
+
+            console.log(articleId);
+
+            btnReply.attr("data-articleid", articleId);
+            btnReply.attr("data-commentid", commentId);
+        });
+
         $("#btn-reply").on("click", function (ev) {
-            var articleId = $(_this).attr("data-articleid");
-            var commentId = $(_this).attr("data-commentid");
+            var articleId = $(ev.target).attr("data-articleid");
+            var commentId = $(ev.target).attr("data-commentid");
             var content = $("#reply-content").val();
+
+            console.log(articleId);
+            console.log(commentId);
+            console.log(content);
 
             articlesdata.addReply(articleId, commentId, content).then(function (resp) {
                 location.reload();

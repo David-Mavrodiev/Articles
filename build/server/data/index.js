@@ -174,17 +174,12 @@ module.exports = {
             });
         });
     },
-    addReply(commentId, articleId, comment) {
-        let scope = this;
-        return new Promise((resolve, reject) => {
-            scope.articleById(articleId)
+    addReply(articleId, commentId, comment) {
+        return this.articleById(articleId)
             .then(article => {
                 article.comments.find(x => x._id == commentId).replies.push(comment);
                 article.save();
-                resolve(article)
             }).catch(err => reject(err));
-        });
-        
     },
     updateArticleById(articleId, updateOptions) {
         return new Promise((resolve, reject) => {
