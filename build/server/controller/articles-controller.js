@@ -115,6 +115,22 @@ module.exports = function(data) {
         getCommentsForArticle(req, res) {
             // capitalizing on middleware
             res.status(200).json(req.data.article.comments);
+        },
+        addReply(req, res) {
+            let articleId = req.body.articleId;
+            let commentId = req.body.commentId;
+            let reply = {
+                content: req.body.content,
+                author: req.user.username
+            };
+            console.log(reply);
+            return data.addReply(articleId, commentId, reply)
+                .then((c) => {
+                    return res.status(201).json({
+                        success: true,
+                        message: 'Comment added'
+                    });
+                });
         }
     }
 }

@@ -36,7 +36,8 @@ const articlesData = window.articlesdata;
                     $paginationContainer.html('');
                     $detailsArticleContainer.html(html);
                     templateHelper.addCreateCommentListener(id);
-
+                    templateHelper.addReplyListener();
+                    
                     $accountContainer.html('');
                 });
 

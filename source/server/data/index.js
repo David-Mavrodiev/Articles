@@ -174,6 +174,18 @@ module.exports = {
             });
         });
     },
+    addReply(commentId, articleId, comment) {
+        let scope = this;
+        return new Promise((resolve, reject) => {
+            scope.articleById(articleId)
+            .then(article => {
+                article.comments.find(x => x._id == commentId).replies.push(comment);
+                article.save();
+                resolve(article)
+            }).catch(err => reject(err));
+        });
+        
+    },
     updateArticleById(articleId, updateOptions) {
         return new Promise((resolve, reject) => {
             Article.findByIdAndUpdate(articleId, updateOptions, (err, article) => {

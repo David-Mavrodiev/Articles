@@ -340,6 +340,17 @@ nav .nav {
   padding-bottom: 50px;
   margin-left: 50px;
   border-top: 1px dotted #a6a6a6; }
+  .comment input[type="button"] {
+    margin-left: 50%;
+    height: 50px;
+    margin-top: 30%;
+    font-family: Droid Sans,sans-serif;
+    color: #7a7575;
+    padding: 10px 13px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    display: inline-block; }
 
 .comments-count-holder {
   font-family: LeagueGothic,Helvetica Neue,Helvetica,Sans Serif;
@@ -392,7 +403,7 @@ nav .nav {
   -webkit-border-image: url(../images/bottom-line.jpg) 30 round;
   border-bottom: 9px solid;
   margin-left: 10px;
-  width: 90%;
+  width: 100%;
   height: 30%;
   margin-top: 100px;
   background-color: #E7E7E7; }
@@ -442,7 +453,7 @@ nav .nav {
   -webkit-border-image: url(../images/bottom-line.jpg) 30 round;
   border-bottom: 9px solid;
   margin-left: 10px;
-  width: 90%;
+  width: 100%;
   height: 30%;
   margin-top: 10px;
   background-color: #E7E7E7; }
@@ -548,6 +559,40 @@ footer {
   .login-register-container .modal.fade.in {
     left: 100px; }
 
+#reply-modal label {
+  color: #dcc08e; }
+
+#reply-modal .modal-header {
+  border-color: #9a1d0d; }
+
+#reply-modal .modal-content {
+  background-color: #222;
+  color: #ddd; }
+
+#reply-modal .modal-title {
+  color: #dcc08e; }
+
+#reply-modal .modal-footer {
+  border-color: #9a1d0d; }
+
+#reply-modal input[type="submit"] {
+  border-radius: 0px !important;
+  background-color: #dcc08e !important;
+  color: #9a1d0d !important; }
+
+#reply-modal .modal-footer button {
+  border-radius: 0px !important;
+  background-color: #9a1d0d !important;
+  color: #dcc08e !important; }
+
+#reply-modal .modal-dialog {
+  width: 400px;
+  overflow: auto;
+  background-color: #333; }
+
+#reply-modal .modal.fade.in {
+  left: 100px; }
+
 .account-btn {
   border-radius: 10px !important;
   border: 2px solid #9a1d0d; }
@@ -589,6 +634,10 @@ footer {
 @media (min-width: 1582px) {
   .articles-container {
     margin-top: 100px; } }
+
+@media (max-width: 1125px) {
+  .right-bar-content {
+    width: 50%; } }
 
 @media (max-width: 991px) {
   .navbar {
@@ -660,7 +709,11 @@ footer {
 
 @media (max-width: 425px) {
   .login-register-container .modal-dialog {
-    width: 350px; } }
+    width: 350px; }
+  .create-comment-holder textarea {
+    width: 250px; }
+  .create-comment-holder div {
+    margin-left: 160px; } }
 
 @media (max-width: 375px) {
   .login-register-container .modal-dialog {

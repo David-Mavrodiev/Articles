@@ -18,7 +18,7 @@ module.exports = app => {
         .put('/api/articles/:articleId', auth.isInRole('admin'), articlesController.updateArticle)
         .delete('/api/articles/:articleId', auth.isInRole('admin'), articlesController.removeArticle)
         .put('/api/articles/:articleId/comments', auth.isAuthenticated, dataMiddleware.articleById, articlesController.createComment)
-
+        .post('/api/comments/reply', auth.isAuthenticated, articlesController.addReply)
 
     app.use(router);
 }

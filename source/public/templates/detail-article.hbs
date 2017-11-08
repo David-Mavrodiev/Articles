@@ -82,6 +82,19 @@
                 <h4>{{this.author.username}}</h4>
                 <p>{{this.content}}</p>
             </div>
+            <input type="button" value="Reply" data-articleid="{{article._id}}" data-commentid="{{this._id}}" data-toggle="modal" data-target="#reply-modal" />
+
+            <div class="replies">
+                {{#each this.replies}}
+                    <div class="col- comment-image-holder">
+                        <img class="comment-profile-image" src="{{this.author.image}}">
+                    </div>
+                    <div class="col- comment-content-holder">
+                        <h4>{{this.author.username}}</h4>
+                        <p>{{this.content}}</p>
+                    </div>
+                {{/each}}
+            </div>
         </div>
     {{/each}}
     <div class="create-comment-holder">
@@ -91,4 +104,26 @@
             <button id="add-comment">CREATE</button>
         </div>
     </div>
+</div>
+
+<div id="reply-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Reply</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="reply-content">Content:</label>
+                <textarea class="form-control" rows="5" id="reply-content"></textarea>
+            </div>
+            <input id="btn-reply" class="btn btn-default" type="submit" value="Reply" />
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
 </div>

@@ -17,4 +17,18 @@ module.exports = {
             })
             .catch(error => res.status(500).json({ message: 'Error' }));
     },
+    commentById(req, res, next) {
+        data.commentById(req.params.commentId)
+            .then(comment => {
+                if (!comment) {
+                    res.status(404).json({ message: 'No comment with such id!' });
+                    return;
+                }
+
+                req.data = req.data || {};
+                req.data.comment = comment;
+                next();
+            })
+            .catch(error => res.status(500).json({ message: 'Error' }));
+    }
 };

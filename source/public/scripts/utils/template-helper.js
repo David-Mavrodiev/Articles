@@ -64,8 +64,21 @@ const common = window.common;
         });
     }
 
+    function addReplyListener(){
+        console.log($("#btn-reply"));
+        $("#btn-reply").on("click", (ev) => {
+            let articleId = $(this).attr("data-articleid");
+            let commentId = $(this).attr("data-commentid");
+            let content = $("#reply-content").val();
+            
+            articlesdata.addReply(articleId, commentId, content)
+                .then((resp) => {
+                    location.reload();
+                });
+        });
+    }
+
     function addSearchListener() {
-        console.log("daf");
         $('#search-box').on('keydown', function(e) {
             console.log("Click");
             if (e.which == 13) {
@@ -212,6 +225,7 @@ const common = window.common;
         addLogoutLink: addLogoutLink,
         addArticleCreate: addArticleCreate,
         addSearchListener: addSearchListener,
-        addCreateCommentListener: addCreateCommentListener
+        addCreateCommentListener: addCreateCommentListener,
+        addReplyListener: addReplyListener
     }
 })(window);

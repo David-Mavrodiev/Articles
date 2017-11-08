@@ -24,6 +24,9 @@ var requester = window.requester;
         },
         addComment: function addComment(comment) {
             return requester.putJSON("/api/articles/" + comment.articleId + "/comments", comment);
+        },
+        addReply: function addReply(articleId, commentId, content) {
+            return requester.postJSON("/api/comments/reply", { articleId: articleId, commentId: commentId, content: content });
         }
     };
 })(window);

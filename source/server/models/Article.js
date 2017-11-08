@@ -34,7 +34,17 @@ const articleSchema = new mongoose.Schema({
         },
         author: {
             username: String
-        }
+        },
+        replies: [{
+            content: {
+                type: String,
+                required: true,
+                minlength: 5
+            },
+            author: {
+                username: String
+            }
+        }]
     }]
 });
 

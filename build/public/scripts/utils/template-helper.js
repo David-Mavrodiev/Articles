@@ -66,8 +66,22 @@ var common = window.common;
         });
     }
 
+    function addReplyListener() {
+        var _this = this;
+
+        console.log($("#btn-reply"));
+        $("#btn-reply").on("click", function (ev) {
+            var articleId = $(_this).attr("data-articleid");
+            var commentId = $(_this).attr("data-commentid");
+            var content = $("#reply-content").val();
+
+            articlesdata.addReply(articleId, commentId, content).then(function (resp) {
+                location.reload();
+            });
+        });
+    }
+
     function addSearchListener() {
-        console.log("daf");
         $('#search-box').on('keydown', function (e) {
             console.log("Click");
             if (e.which == 13) {
@@ -212,6 +226,7 @@ var common = window.common;
         addLogoutLink: addLogoutLink,
         addArticleCreate: addArticleCreate,
         addSearchListener: addSearchListener,
-        addCreateCommentListener: addCreateCommentListener
+        addCreateCommentListener: addCreateCommentListener,
+        addReplyListener: addReplyListener
     };
 })(window);
