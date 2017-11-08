@@ -242,7 +242,7 @@ nav {
   border-image: url('../images/bottom-line.jpg') 30 round;
   border-top:9px solid;
   border-bottom:9px solid;
-  margin-top: 100px;
+  margin-top: 36px;
   width: 100%;
 }
 
@@ -736,6 +736,32 @@ footer {
     @include custom-modal;
 }
 
+/*-----------------------------SITEMAP-------------------------------------------
+-------------------------------------------------------------------------------*/
+
+.sitemap{
+    color:#686767;
+    margin-left: 20px;
+    font-family: 'Droid Sans', sans-serif !important;
+    text-shadow: 1px 1px black  !important;
+    a{
+      color:#686767;
+    }
+}
+
+.breadcrumb{
+  background-color: inherit;
+}
+
+.breadcrumb > li + li:before {
+    color: #686767 !important;
+    content: " » " !important;
+    padding: 0 5px !important;
+}
+
+/*-----------------------------MEDIA-QUERIES-------------------------------------------
+-------------------------------------------------------------------------------*/
+
 @media (min-width: 1582px) {
     .articles-container {
         margin-top: 100px;
@@ -806,6 +832,18 @@ footer {
         img {
             width: 40%;
         }
+    }
+}
+
+@media (max-width: 767px) {
+    .detailed-article-container{
+        margin-left: 50px;
+    }
+    .comments-container{
+        margin-left: 50px;
+    }
+    .right-bar-wrapper{
+        margin-left: 50px;
     }
 }
 

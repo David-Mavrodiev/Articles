@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Droid+Sans");
 @font-face {
   font-family: 'LeagueGothic';
@@ -190,7 +191,7 @@ nav .nav {
   border-image: url("../images/bottom-line.jpg") 30 round;
   border-top: 9px solid;
   border-bottom: 9px solid;
-  margin-top: 100px;
+  margin-top: 36px;
   width: 100%; }
 
 .da-details {
@@ -631,6 +632,26 @@ footer {
 .article-create-container .modal.fade.in {
   left: 100px; }
 
+/*-----------------------------SITEMAP-------------------------------------------
+-------------------------------------------------------------------------------*/
+.sitemap {
+  color: #686767;
+  margin-left: 20px;
+  font-family: 'Droid Sans', sans-serif !important;
+  text-shadow: 1px 1px black  !important; }
+  .sitemap a {
+    color: #686767; }
+
+.breadcrumb {
+  background-color: inherit; }
+
+.breadcrumb > li + li:before {
+  color: #686767 !important;
+  content: " » " !important;
+  padding: 0 5px !important; }
+
+/*-----------------------------MEDIA-QUERIES-------------------------------------------
+-------------------------------------------------------------------------------*/
 @media (min-width: 1582px) {
   .articles-container {
     margin-top: 100px; } }
@@ -680,6 +701,14 @@ footer {
 @media (max-width: 800px) {
   .logo-holder img {
     width: 40%; } }
+
+@media (max-width: 767px) {
+  .detailed-article-container {
+    margin-left: 50px; }
+  .comments-container {
+    margin-left: 50px; }
+  .right-bar-wrapper {
+    margin-left: 50px; } }
 
 @media (max-width: 660px) {
   .logo-holder img {
