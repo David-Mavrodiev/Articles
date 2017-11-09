@@ -4,6 +4,8 @@
 window.controllers = window.controllers || {}
 const templates = window.templates;
 const articlesData = window.articlesdata;
+const commonHelper = window.commonHelper;
+const articleHelper = window.articleHelper;
 
 ((scope) => {
     const articleById = (params) => {
@@ -31,31 +33,30 @@ const articlesData = window.articlesdata;
                     let html = articleTemplate({ article }, {
                         data: { intl: intlData }
                     });
-                    console.log(article);
-                    $articlesContainer.html('');
-                    $paginationContainer.html('');
-                    $detailsArticleContainer.html(html);
-                    templateHelper.addCreateCommentListener(id);
-                    templateHelper.addReplyListener();
                     
-                    $accountContainer.html('');
+                    $articlesContainer.empty();
+                    $paginationContainer.empty();
+                    $detailsArticleContainer.html(html);
+                    articleHelper.addCreateCommentListener(id);
+                    articleHelper.addReplyListener();
+                    
+                    $accountContainer.empty();
                 });
 
-                politicsArticles = politicsArticles.slice(Math.max(politicsArticles.length - 4, 1));
-                sportArticles = sportArticles.slice(Math.max(sportArticles.length - 4, 1));
+                politicsArticles = politicsArticles.slice(Math.max(politicsArticles.length - 4, 0));
+                sportArticles = sportArticles.slice(Math.max(sportArticles.length - 4, 0));
                 
                 let mixArticles = [];
                 mixArticles.push(...politicsArticles.slice(Math.max(politicsArticles.length - 2, 0)));
                 mixArticles.push(...sportArticles.slice(Math.max(sportArticles.length - 2, 0)));
                 
-                console.log(mixArticles);
                 let html = rightBarTemplate({ politicsArticles, sportArticles, mixArticles }, {
                     data: { intl: intlData }
                 });
 
                 $rightBarContainer.html(html);
-                templateHelper.addFooter();
-                templateHelper.addSearchListener();
+                commonHelper.addFooter();
+                commonHelper.addSearchListener();
             });
     }
 

@@ -8,6 +8,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 window.controllers = window.controllers || {};
 var templates = window.templates;
 var articlesData = window.articlesdata;
+var commonHelper = window.commonHelper;
+var articleHelper = window.articleHelper;
 
 (function (scope) {
     var articleById = function articleById(params) {
@@ -38,31 +40,30 @@ var articlesData = window.articlesdata;
                 var html = articleTemplate({ article: article }, {
                     data: { intl: intlData }
                 });
-                console.log(article);
-                $articlesContainer.html('');
-                $paginationContainer.html('');
-                $detailsArticleContainer.html(html);
-                templateHelper.addCreateCommentListener(id);
-                templateHelper.addReplyListener();
 
-                $accountContainer.html('');
+                $articlesContainer.empty();
+                $paginationContainer.empty();
+                $detailsArticleContainer.html(html);
+                articleHelper.addCreateCommentListener(id);
+                articleHelper.addReplyListener();
+
+                $accountContainer.empty();
             });
 
-            politicsArticles = politicsArticles.slice(Math.max(politicsArticles.length - 4, 1));
-            sportArticles = sportArticles.slice(Math.max(sportArticles.length - 4, 1));
+            politicsArticles = politicsArticles.slice(Math.max(politicsArticles.length - 4, 0));
+            sportArticles = sportArticles.slice(Math.max(sportArticles.length - 4, 0));
 
             var mixArticles = [];
             mixArticles.push.apply(mixArticles, _toConsumableArray(politicsArticles.slice(Math.max(politicsArticles.length - 2, 0))));
             mixArticles.push.apply(mixArticles, _toConsumableArray(sportArticles.slice(Math.max(sportArticles.length - 2, 0))));
 
-            console.log(mixArticles);
             var html = rightBarTemplate({ politicsArticles: politicsArticles, sportArticles: sportArticles, mixArticles: mixArticles }, {
                 data: { intl: intlData }
             });
 
             $rightBarContainer.html(html);
-            templateHelper.addFooter();
-            templateHelper.addSearchListener();
+            commonHelper.addFooter();
+            commonHelper.addSearchListener();
         });
     };
 

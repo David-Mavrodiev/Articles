@@ -7,7 +7,8 @@ const templates = window.templates;
 const articlesData = window.articlesdata;
 const usersdata = window.usersdata;
 const common = window.common;
-const templateHelper = window.helper;
+const commonHelper = window.commonHelper;
+const articleHelper = window.articleHelper;
 
 ((scope) => {
 
@@ -28,29 +29,29 @@ const templateHelper = window.helper;
 
                 usersdata.isLoggedIn().then(username => {
                     if (username === null) {
-                        $accountContainer.html('');
+                        $accountContainer.empty();
                         let loginLink = common.createNavLinkToggle("Login", "#login-modal");
                         let registerLink = common.createNavLinkToggle("Register", "#register-modal");
                         $accountContainer.append(loginLink, registerLink);
 
-                        templateHelper.addLogin();
-                        templateHelper.addRegister();
+                        commonHelper.addLogin();
+                        commonHelper.addRegister();
                     } else {
                         usersdata.getUserByUsername(username).then((resp) => {
                             if ($.inArray("admin", resp.roles)) {
-                                templateHelper.addArticleCreate();
+                                articleHelper.addArticleCreate();
                             }
                         });
 
-                        templateHelper.addLogoutLink();
+                        commonHelper.addLogoutLink();
                     }
                 });
 
-                templateHelper.addPagination();
-                templateHelper.addFooter();
-                templateHelper.addSearchListener();
-                $detailsArticleContainer.html('');
-                $rightBarContainer.html('');
+                commonHelper.addPagination();
+                commonHelper.addFooter();
+                commonHelper.addSearchListener();
+                $detailsArticleContainer.empty();
+                $rightBarContainer.empty();
             });
     };
 

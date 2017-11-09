@@ -1,29 +1,8 @@
-/* globals $ Promise */
-"use strict";
 const usersdata = window.usersdata;
 const articlesdata = window.articlesdata;
 const common = window.common;
 
 ((scope) => {
-    function addArticleCreate() {
-        let articleCreateLink = common.createNavLinkToggle("Create article", "#create-article-modal");
-
-        $accountContainer.append(articleCreateLink);
-
-        templates.get("create-article").then(template => {
-            var intlData = {
-                "locales": "en-US"
-            };
-
-            let html = template(null, {
-                data: { intl: intlData }
-            });
-
-            $articleCreateContainer.append(html);
-            addCreateArticleListener();
-        });
-    }
-
     function addLogoutLink() {
         let logoutLink = common.createNavLink("Logout", "logout");
 
@@ -53,10 +32,13 @@ const common = window.common;
                         $("#login-modal").modal("hide");
                         addLogoutLink();
                         if ($.inArray("admin", resp.userrole)) {
-                            addArticleCreate();
+                            window.articleHelper.addArticleCreate();
                         }
                     } else {
-                        document.location = "#/home";
+                        let $msg = $("<p>");
+                        $msg.css("color", "red");
+                        $msg.text("Wrong email or password");
+                        $("#login-modal .modal-body .alert-message").html($msg);
                     }
                 });
             ev.preventDefault();
@@ -64,39 +46,8 @@ const common = window.common;
         });
     }
 
-    function addReplyListener(){
-        let btnReply = $("#btn-reply");
-
-        $(".reply-modal-btn").on("click", (ev) => {
-            console.log($(this));
-            let articleId = $(ev.target).attr("data-articleid");
-            let commentId = $(ev.target).attr("data-commentid");
-            
-            console.log(articleId);
-
-            btnReply.attr("data-articleid", articleId);
-            btnReply.attr("data-commentid", commentId);
-        });
-
-        $("#btn-reply").on("click", (ev) => {
-            let articleId = $(ev.target).attr("data-articleid");
-            let commentId = $(ev.target).attr("data-commentid");
-            let content = $("#reply-content").val();
-            
-            console.log(articleId);
-            console.log(commentId);
-            console.log(content);
-
-            articlesdata.addReply(articleId, commentId, content)
-                .then((resp) => {
-                    location.reload();
-                });
-        });
-    }
-
     function addSearchListener() {
         $('#search-box').on('keydown', function(e) {
-            console.log("Click");
             if (e.which == 13) {
                 router.navigate('/articles/?pageNumber=1&pageSize=5&pattern=' + $(this).val());
             }
@@ -132,54 +83,7 @@ const common = window.common;
         });
     }
 
-    function addCreateArticleListener() {
-        $("#btn-create-article").on("click", function() {
-            let article = {
-                title: $("#article-title").val(),
-                description: $("#article-description").val(),
-                category: $("#article-category").val(),
-                image: $("#article-image-link").val()
-            };
-
-            articlesdata.addArticle(article)
-                .then((resp) => {
-                    $("#create-article-modal").modal("hide");
-                    Promise.all([articlesData.getArticles(0, 5, ""), templates.get("articles")])
-                        .then(([res, template]) => {
-                            const articles = res;
-                            var intlData = {
-                                "locales": "en-US"
-                            };
-
-                            let html = template({ articles }, {
-                                data: { intl: intlData }
-                            });
-
-                            $articlesContainer.html(html);
-                        });
-                });
-        });
-    }
-
-    function addCreateCommentListener(articleId){
-        $("#add-comment").on("click", function(){
-            let body = {
-                articleId: articleId,
-                content: $("#comment-content").val()
-            };
-
-            articlesdata.addComment(body)
-                .then((comment) => {
-                    location.reload();
-                });
-        });
-    }
-
-    function addRightBar(){
-        
-    }
-
-    scope.helper = {
+    scope.commonHelper = {
         addPagination() {
             articlesdata.getAllArticlesCount()
                 .then(count => {
@@ -239,9 +143,6 @@ const common = window.common;
             });
         },
         addLogoutLink: addLogoutLink,
-        addArticleCreate: addArticleCreate,
-        addSearchListener: addSearchListener,
-        addCreateCommentListener: addCreateCommentListener,
-        addReplyListener: addReplyListener
+        addSearchListener: addSearchListener
     }
 })(window);

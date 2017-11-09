@@ -4,6 +4,7 @@
 window.controllers = window.controllers || {}
 const templates = window.templates;
 const articlesData = window.articlesdata;
+const commonHelper = window.commonHelper;
 
 ((scope) => {
 
@@ -27,7 +28,7 @@ const articlesData = window.articlesdata;
                     });
 
                     $articlesContainer.html(html);
-                    $detailsArticleContainer.html('');
+                    $detailsArticleContainer.empty();
                 });
         }else{
             var category = queryObj.category;
@@ -43,14 +44,14 @@ const articlesData = window.articlesdata;
                     });
 
                     $articlesContainer.html(html);
-                    $detailsArticleContainer.html('');
+                    $detailsArticleContainer.empty();
                 });
         }
 
-        templateHelper.addPagination();
-        templateHelper.addFooter();
-        templateHelper.addSearchListener();
-        $rightBarContainer.html('');
+        commonHelper.addPagination();
+        commonHelper.addFooter();
+        commonHelper.addSearchListener();
+        $rightBarContainer.empty();
     }
 
     scope.articles = {

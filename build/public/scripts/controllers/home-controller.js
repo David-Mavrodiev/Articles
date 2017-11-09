@@ -9,7 +9,8 @@ var templates = window.templates;
 var articlesData = window.articlesdata;
 var usersdata = window.usersdata;
 var common = window.common;
-var templateHelper = window.helper;
+var commonHelper = window.commonHelper;
+var articleHelper = window.articleHelper;
 
 (function (scope) {
 
@@ -33,29 +34,29 @@ var templateHelper = window.helper;
 
             usersdata.isLoggedIn().then(function (username) {
                 if (username === null) {
-                    $accountContainer.html('');
+                    $accountContainer.empty();
                     var loginLink = common.createNavLinkToggle("Login", "#login-modal");
                     var registerLink = common.createNavLinkToggle("Register", "#register-modal");
                     $accountContainer.append(loginLink, registerLink);
 
-                    templateHelper.addLogin();
-                    templateHelper.addRegister();
+                    commonHelper.addLogin();
+                    commonHelper.addRegister();
                 } else {
                     usersdata.getUserByUsername(username).then(function (resp) {
                         if ($.inArray("admin", resp.roles)) {
-                            templateHelper.addArticleCreate();
+                            articleHelper.addArticleCreate();
                         }
                     });
 
-                    templateHelper.addLogoutLink();
+                    commonHelper.addLogoutLink();
                 }
             });
 
-            templateHelper.addPagination();
-            templateHelper.addFooter();
-            templateHelper.addSearchListener();
-            $detailsArticleContainer.html('');
-            $rightBarContainer.html('');
+            commonHelper.addPagination();
+            commonHelper.addFooter();
+            commonHelper.addSearchListener();
+            $detailsArticleContainer.empty();
+            $rightBarContainer.empty();
         });
     };
 

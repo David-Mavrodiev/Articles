@@ -6,6 +6,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 window.controllers = window.controllers || {};
 var templates = window.templates;
 var articlesData = window.articlesdata;
+var commonHelper = window.commonHelper;
 
 (function (scope) {
 
@@ -32,7 +33,7 @@ var articlesData = window.articlesdata;
                 });
 
                 $articlesContainer.html(html);
-                $detailsArticleContainer.html('');
+                $detailsArticleContainer.empty();
             });
         } else {
             var category = queryObj.category;
@@ -51,14 +52,14 @@ var articlesData = window.articlesdata;
                 });
 
                 $articlesContainer.html(html);
-                $detailsArticleContainer.html('');
+                $detailsArticleContainer.empty();
             });
         }
 
-        templateHelper.addPagination();
-        templateHelper.addFooter();
-        templateHelper.addSearchListener();
-        $rightBarContainer.html('');
+        commonHelper.addPagination();
+        commonHelper.addFooter();
+        commonHelper.addSearchListener();
+        $rightBarContainer.empty();
     };
 
     scope.articles = {
